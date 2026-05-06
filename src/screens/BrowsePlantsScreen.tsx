@@ -1,10 +1,10 @@
 import { useRouter } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { plants } from '@/data/plants';
+import { useSearchablePlants } from '@/hooks/usePlantRepository';
 import {
-  formatFactSourceList,
   formatHeightRange,
   formatPlantTitle,
   formatTraitList,
@@ -12,10 +12,43 @@ import {
 
 export function BrowsePlantsScreen() {
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
+  const { plants, isLoading, error } = useSearchablePlants(searchQuery);
 
   return (
     <ScreenContainer>
-      <ScrollView contentContainerStyle={styles.list}>
+      <ScrollView contentContainerStyle={styles.list} keyboardShouldPersistTaps="handled">
+        <View style={styles.searchSection}>
+          <Text style={styles.searchLabel}>Search the offline field guide</Text>
+          <TextInput
+            accessibilityLabel="Search plants"
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={setSearchQuery}
+            placeholder="Common name, family, habitat, feature..."
+            placeholderTextColor="#7A887A"
+            style={styles.searchInput}
+            value={searchQuery}
+          />
+          <Text style={styles.searchHint}>
+            {isLoading ? 'Loading local SQLite records...' : `${plants.length} native Illinois plants found`}
+          </Text>
+        </View>
+
+        {error ? (
+          <View style={styles.card}>
+            <Text style={styles.title}>Unable to load plants</Text>
+            <Text style={styles.body}>{error.message}</Text>
+          </View>
+        ) : null}
+
+        {!isLoading && !error && plants.length === 0 ? (
+          <View style={styles.card}>
+            <Text style={styles.title}>No matches</Text>
+            <Text style={styles.body}>Try searching by a plant name, family, habitat, bloom season, or field mark.</Text>
+          </View>
+        ) : null}
+
         {plants.map((plant) => (
           <Pressable
             key={plant.id}
@@ -25,16 +58,11 @@ export function BrowsePlantsScreen() {
           >
             <Text style={styles.title}>{formatPlantTitle(plant)}</Text>
             <Text style={styles.meta}>{plant.family} - {plant.nativeStatus}</Text>
+            <Text style={styles.body}>Bloom season: {plant.bloomSeason}</Text>
             <Text style={styles.body}>Habitats: {formatTraitList(plant.habitats)}</Text>
-            <Text style={styles.body}>Flower colors: {formatTraitList(plant.flowerColors)}</Text>
-            <Text style={styles.body}>Bloom months: {formatTraitList(plant.bloomMonths)}</Text>
-            <Text style={styles.body}>
-              Leaf: {plant.leafArrangement}, {plant.leafShape}, {plant.leafMargin}
-            </Text>
-            <Text style={styles.body}>Stem: {plant.stemType}</Text>
             <Text style={styles.body}>Height: {formatHeightRange(plant.heightRangeInches)}</Text>
-            <Text style={styles.body}>Referenced fact sources: {formatFactSourceList(plant.factSources)}</Text>
-            <Text style={styles.body}>Tap for details</Text>
+            <Text style={styles.body}>Key features: {plant.identifyingFeatures.slice(0, 2).join(' ')}</Text>
+            <Text style={styles.linkText}>Tap for details</Text>
           </Pressable>
         ))}
       </ScrollView>
@@ -46,6 +74,33 @@ const styles = StyleSheet.create({
   list: {
     gap: 14,
     paddingBottom: 32,
+  },
+  searchSection: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#D7DED0',
+    borderRadius: 18,
+    borderWidth: 1,
+    gap: 10,
+    padding: 18,
+  },
+  searchLabel: {
+    color: '#1F3D2F',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  searchInput: {
+    backgroundColor: '#F7F8F3',
+    borderColor: '#C9D5C2',
+    borderRadius: 12,
+    borderWidth: 1,
+    color: '#1F3D2F',
+    fontSize: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  },
+  searchHint: {
+    color: '#5E6F60',
+    fontSize: 14,
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -74,5 +129,10 @@ const styles = StyleSheet.create({
     color: '#4A5B4D',
     fontSize: 15,
     lineHeight: 22,
+  },
+  linkText: {
+    color: '#2F6847',
+    fontSize: 15,
+    fontWeight: '700',
   },
 });

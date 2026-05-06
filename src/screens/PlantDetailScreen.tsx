@@ -3,6 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Attribution } from '@/components/Attribution';
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { usePlantById } from '@/hooks/usePlantRepository';
 import { getBundledPlantImageSource } from '@/utils/imageAssets';
 import { canUseImageInCommercialApp, isPreferredCommercialImageSource } from '@/utils/mediaRights';
 import {
@@ -13,13 +14,36 @@ import {
   formatImageSourceList,
   formatTraitList,
   getReviewedImageCandidatesForPlant,
-  getPlantById,
 } from '@/utils/plants';
 
 export function PlantDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const plantId = Array.isArray(id) ? id[0] : id;
-  const plant = plantId ? getPlantById(plantId) : undefined;
+  const { plant, isLoading, error } = usePlantById(plantId);
+
+  if (isLoading) {
+    return (
+      <ScreenContainer>
+        <Stack.Screen options={{ title: 'Plant Details' }} />
+        <View style={styles.section}>
+          <Text style={styles.title}>Loading plant...</Text>
+          <Text style={styles.body}>Reading the local SQLite field-guide record.</Text>
+        </View>
+      </ScreenContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <ScreenContainer>
+        <Stack.Screen options={{ title: 'Plant Details' }} />
+        <View style={styles.section}>
+          <Text style={styles.title}>Unable to load plant</Text>
+          <Text style={styles.body}>{error.message}</Text>
+        </View>
+      </ScreenContainer>
+    );
+  }
 
   if (!plant) {
     return (
@@ -95,6 +119,7 @@ export function PlantDetailScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Field Traits</Text>
           <Text style={styles.body}>Habitats: {formatTraitList(plant.habitats)}</Text>
+          <Text style={styles.body}>Bloom season: {plant.bloomSeason}</Text>
           <Text style={styles.body}>Flower colors: {formatTraitList(plant.flowerColors)}</Text>
           <Text style={styles.body}>Bloom months: {formatTraitList(plant.bloomMonths)}</Text>
           <Text style={styles.body}>
@@ -102,6 +127,10 @@ export function PlantDetailScreen() {
           </Text>
           <Text style={styles.body}>Stem: {plant.stemType}</Text>
           <Text style={styles.body}>Height: {formatHeightRange(plant.heightRangeInches)}</Text>
+          <Text style={styles.body}>Identifying features:</Text>
+          {plant.identifyingFeatures.map((feature) => (
+            <Text key={feature} style={styles.bullet}>• {feature}</Text>
+          ))}
           <Text style={styles.body}>Notes: {plant.notes}</Text>
         </View>
 
@@ -123,7 +152,8 @@ export function PlantDetailScreen() {
           </Text>
           <Text style={styles.body}>
             The live app only renders reviewed public-domain or CC0 images, with U.S. government public-domain sources
-            preferred over other public repositories.
+            preferred over other public repositories. TODO(image-licensing): connect future imports to a repeatable
+            review queue before new assets are bundled.
           </Text>
           <Text style={styles.body}>Reviewed bundle candidates: {reviewedCandidates.length}</Text>
           <Text style={styles.body}>Locally bundled images: {bundledImages.length}</Text>
@@ -186,6 +216,12 @@ const styles = StyleSheet.create({
   },
   mediaBlock: {
     gap: 10,
+  },
+  bullet: {
+    color: '#4A5B4D',
+    fontSize: 15,
+    lineHeight: 22,
+    paddingLeft: 8,
   },
   image: {
     backgroundColor: '#DCE8D8',
