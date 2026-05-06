@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Illinois Plant ID",
+    "slug": "plant-taxonomy-field-guide",
+    "scheme": "planttaxonomyfieldguide",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": ["expo-router"]
+  }
+}

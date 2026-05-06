@@ -1,0 +1,11 @@
+.expo/
+.expo-home/
+.expo-shared/
+.DS_Store
+dist/
+node_modules/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+*-portable.zip
