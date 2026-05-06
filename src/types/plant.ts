@@ -159,6 +159,7 @@ export type Plant = {
   lastVerified?: string;
   imageSources: ImageSourceName[];
   habitats: Habitat[];
+  bloomSeason: string;
   flowerColors: FlowerColor[];
   bloomMonths: BloomMonth[];
   // Use the dominant field-guide trait rather than every botanical variation.
@@ -168,6 +169,7 @@ export type Plant = {
   // Keep this to the most useful stem cue for simple offline filtering.
   stemType: StemType;
   heightRangeInches: HeightRangeInches;
+  identifyingFeatures: string[];
   notes: string;
   images: PlantImage[];
 };
