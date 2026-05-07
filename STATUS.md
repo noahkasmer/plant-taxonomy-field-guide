@@ -31,6 +31,11 @@ Read this before starting. Update this before pushing.
 
 ---
 
+## In progress - Claude
+
+- Waiting on Codex db fixes before touching any shared files
+- Will do visual slot audit once Codex pushes (user needs to walk through the app)
+
 ## Pending - Claude
 
 - [ ] Visual audit of iNat image slots across all 31 plants (only black-eyed-susan was user-verified; others were annotated by iNat phenology and not hand-checked)
