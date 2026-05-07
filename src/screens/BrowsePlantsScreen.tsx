@@ -61,7 +61,7 @@ export function BrowsePlantsScreen() {
             <Text style={styles.body}>Bloom season: {plant.bloomSeason}</Text>
             <Text style={styles.body}>Habitats: {formatTraitList(plant.habitats)}</Text>
             <Text style={styles.body}>Height: {formatHeightRange(plant.heightRangeInches)}</Text>
-            <Text style={styles.body}>Key features: {plant.identifyingFeatures.slice(0, 2).join(' ')}</Text>
+            <Text style={styles.body}>Key features: {plant.identifyingFeatures.slice(0, 2).join('; ')}</Text>
             <Text style={styles.linkText}>Tap for details</Text>
           </Pressable>
         ))}

@@ -152,8 +152,7 @@ export function PlantDetailScreen() {
           </Text>
           <Text style={styles.body}>
             The live app only renders reviewed public-domain or CC0 images, with U.S. government public-domain sources
-            preferred over other public repositories. TODO(image-licensing): connect future imports to a repeatable
-            review queue before new assets are bundled.
+            preferred over other public repositories.
           </Text>
           <Text style={styles.body}>Reviewed bundle candidates: {reviewedCandidates.length}</Text>
           <Text style={styles.body}>Locally bundled images: {bundledImages.length}</Text>
