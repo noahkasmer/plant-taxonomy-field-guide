@@ -96,6 +96,7 @@ export function IdentifyScreen() {
           onChoice={handleChoice}
           onBack={handleBack}
           onRestart={handleRestart}
+          onBrowseByTrait={() => router.push('/field-browse')}
           onOpenGlossary={() => setGlossaryVisible(true)}
           onExitFieldMode={() => setFieldMode(false)}
         />
