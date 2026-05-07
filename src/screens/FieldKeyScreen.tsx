@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -9,6 +9,7 @@ import { GuidedFieldMode } from '@/components/GuidedFieldMode';
 import { keyNodes, ROOT_NODE_ID } from '@/data/dichotomousKey';
 import { useAppStore } from '@/store/appStore';
 import { getBundledPlantImageSource } from '@/utils/imageAssets';
+import { findSubKeyEntry } from '@/utils/keyTraversal';
 import type { KeyNode } from '@/types/dichotomousKey';
 
 const DARK_BG = '#0D1F15';
@@ -16,17 +17,27 @@ const ACCENT = '#7DD4A0';
 const TEXT_PRIMARY = '#FFFFFF';
 const TEXT_MUTED = '#5E8F70';
 const CARD_BG = '#1A4A2E';
+const SEED_BANNER_BG = '#153D24';
 
 function findNode(id: string): KeyNode | null {
   return keyNodes.find((node) => node.id === id) ?? null;
 }
 
-export function FieldKeyScreen() {
+type Props = {
+  seedPlantIds?: string[];
+};
+
+export function FieldKeyScreen({ seedPlantIds }: Props) {
   const router = useRouter();
   const plantSummaries = useAppStore((state) => state.plantSummaries);
   const favoriteIds = useAppStore((state) => state.favoriteIds);
 
-  const [currentNodeId, setCurrentNodeId] = useState<string>(ROOT_NODE_ID);
+  const startNodeId = useMemo(
+    () => (seedPlantIds && seedPlantIds.length > 0 ? findSubKeyEntry(seedPlantIds) : ROOT_NODE_ID),
+    [seedPlantIds],
+  );
+
+  const [currentNodeId, setCurrentNodeId] = useState<string>(startNodeId);
   const [history, setHistory] = useState<{ nodeId: string; choice: 'a' | 'b' }[]>([]);
   const [resultIds, setResultIds] = useState<string[] | null>(null);
   const [glossaryOpen, setGlossaryOpen] = useState(false);
@@ -56,12 +67,19 @@ export function FieldKeyScreen() {
   function handleRestart() {
     setHistory([]);
     setResultIds(null);
-    setCurrentNodeId(ROOT_NODE_ID);
+    setCurrentNodeId(startNodeId);
   }
 
-  const matchingPlants = resultIds
-    ? plantSummaries.filter((p) => resultIds.includes(p.id))
-    : [];
+  const matchingPlants = useMemo(() => {
+    if (!resultIds) return [];
+    const candidates = plantSummaries.filter((p) => resultIds.includes(p.id));
+    if (seedPlantIds && seedPlantIds.length > 0) {
+      return candidates.filter((p) => seedPlantIds.includes(p.id));
+    }
+    return candidates;
+  }, [resultIds, plantSummaries, seedPlantIds]);
+
+  const isSeeded = seedPlantIds && seedPlantIds.length > 0;
 
   if (resultIds !== null) {
     return (
@@ -93,7 +111,7 @@ export function FieldKeyScreen() {
             </Pressable>
             <Pressable
               accessibilityRole="button"
-              onPress={() => router.push('/(tabs)')}
+              onPress={() => router.back()}
               style={({ pressed }) => [styles.topBarButton, pressed && styles.pressed]}
             >
               <Text style={styles.accentText}>Exit</Text>
@@ -159,12 +177,13 @@ export function FieldKeyScreen() {
         currentNode={currentNode}
         stepNumber={history.length + 1}
         historyLength={history.length}
+        seedBanner={isSeeded ? `Narrowing ${seedPlantIds!.length} candidates` : undefined}
         onChoice={handleChoice}
         onBack={handleBack}
         onRestart={handleRestart}
         onBrowseByTrait={() => router.push('/field-browse')}
         onOpenGlossary={() => setGlossaryOpen(true)}
-        onExitFieldMode={() => router.push('/(tabs)')}
+        onExitFieldMode={() => router.back()}
       />
     </>
   );
@@ -270,5 +289,18 @@ const styles = StyleSheet.create({
     color: TEXT_MUTED,
     fontSize: 16,
     fontWeight: '600',
+  },
+  seedBanner: {
+    backgroundColor: SEED_BANNER_BG,
+    borderRadius: 10,
+    marginBottom: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  seedBannerText: {
+    color: ACCENT,
+    fontSize: 13,
+    fontWeight: '600',
+    letterSpacing: 0.4,
   },
 });

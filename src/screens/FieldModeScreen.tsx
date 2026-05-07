@@ -1,5 +1,5 @@
 import { startTransition, useMemo, useState } from 'react';
-import { FlatList, ScrollView, Text, View } from 'react-native';
+import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import { EmptyState } from '@/components/EmptyState';
@@ -199,8 +199,8 @@ export function FieldModeScreen() {
         ListHeaderComponent={
           <View style={tw`pb-5`}>
             <SectionHeading
-              title="Field Mode"
-              subtitle="Large targets, high contrast, and trait-first filtering for quick outdoor identification."
+              title="Browse by Trait"
+              subtitle="Use the guided key for fast yes-or-no identification, or narrow the catalog here when you already know a few field traits."
               rightLabel={`${filteredPlants.length} matches`}
             />
 
@@ -265,6 +265,25 @@ export function FieldModeScreen() {
                 })),
               )}
             </View>
+
+            {filteredPlants.length >= 2 && filteredPlants.length <= 10 ? (
+              <Pressable
+                accessibilityRole="button"
+                onPress={() =>
+                  router.push(
+                    `/identify-key?seeds=${filteredPlants.map((p) => p.id).join(',')}`,
+                  )
+                }
+                style={({ pressed }) => [styles.narrowBanner, pressed && styles.narrowBannerPressed]}
+              >
+                <View style={styles.narrowBannerInner}>
+                  <Text style={styles.narrowBannerTitle}>Still not sure?</Text>
+                  <Text style={styles.narrowBannerSub}>
+                    Use the key to distinguish between these {filteredPlants.length} plants →
+                  </Text>
+                </View>
+              </Pressable>
+            ) : null}
           </View>
         }
         renderItem={({ item }) => (
@@ -289,3 +308,31 @@ export function FieldModeScreen() {
     </ScreenContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  narrowBanner: {
+    backgroundColor: '#0D1F15',
+    borderColor: '#2D6844',
+    borderRadius: 14,
+    borderWidth: 1,
+    marginTop: 14,
+    paddingHorizontal: 18,
+    paddingVertical: 14,
+  },
+  narrowBannerPressed: {
+    opacity: 0.7,
+  },
+  narrowBannerInner: {
+    gap: 4,
+  },
+  narrowBannerTitle: {
+    color: '#7DD4A0',
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  narrowBannerSub: {
+    color: '#E8F2EA',
+    fontSize: 14,
+    lineHeight: 20,
+  },
+});

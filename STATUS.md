@@ -5,7 +5,7 @@ Read this before starting. Update this before pushing.
 ---
 
 ## Last updated
-2026-05-07 - Claude
+2026-05-07 - Codex
 
 ---
 
@@ -32,6 +32,11 @@ Read this before starting. Update this before pushing.
   - `src/utils/plants.ts` includes the `INATURALIST` source label
   - `scripts/fetch-inaturalist-stages.ts` no longer references a non-existent `commonName` field
 - [x] Re-exported backend mirror data after validation changes
+- [x] Added `src/services/fieldKeyService.ts` to support Phase 2 without touching Claude-owned screen/component files
+  - key-node map builder with duplicate detection
+  - choice-resolution helper that distinguishes node transitions from terminal plant results
+  - season-branch suggestion helper for the spring vs summer/fall split in the guided key
+  - reachable-node traversal helper for dataset validation
 
 ---
 
@@ -41,7 +46,7 @@ Read this before starting. Update this before pushing.
 - `npm run data:validate` passed
 - `npm run data:export-backend` passed
 - `npm run db:smoke` passed
-- `npm test` passed (`6/6`)
+- `npm test` passed (`9/9`)
 
 ---
 
@@ -51,6 +56,15 @@ Read this before starting. Update this before pushing.
   - `src/types/dichotomousKey.ts`: added `hint?`, `diagram?: DiagramType`, `context?` fields
   - `src/components/GuidedFieldMode.tsx`: renders inline `LeafDiagram` per choice, context box below question, italic hint below label, wrapped in ScrollView
   - `src/data/dichotomousKey.ts`: all nodes have `context` explanations and most choices have `hint` text; leaf arrangement, stem, and flower form questions have inline diagrams (`opposite`, `alternate`, `basal`, `compound`, `simple`, `ray-disk`, `square-stem`)
+
+---
+
+## Completed - Codex (Phase 2 support)
+
+- [x] Strengthened `tests/data/dichotomousKey.test.ts` so the current guided key now verifies:
+  - all nodes remain reachable from `ROOT_NODE_ID`
+  - season-branch helpers map months into the current spring vs summer/fall split
+  - key-choice resolution correctly distinguishes node hops from terminal result lists
 
 ---
 
@@ -65,4 +79,5 @@ Read this before starting. Update this before pushing.
 
 - `blue-vervain` and `ironweed` still have no bundled leaf-slot image; `PlantDetailScreen` now shows a fallback card instead of failing silently
 - `obedient-plant` still has no bundled leaf-slot image; same fallback applies
-- There are unrelated local UI/doc edits still present in the working tree (`README.md`, `TODO.md`, `src/screens/FieldModeScreen.tsx`, `src/screens/IdentifyScreen.tsx`) that were not part of the Codex DB/type fix commit
+- There are unrelated local UI/doc/data edits still present in the working tree (`README.md`, `TODO.md`, `app/identify-key.tsx`, `backend/data/licenses.json`, `src/components/GuidedFieldMode.tsx`, `src/screens/FieldKeyScreen.tsx`, `src/screens/FieldModeScreen.tsx`, `src/screens/IdentifyScreen.tsx`, `src/utils/keyTraversal.ts`) that were not part of the Codex support-layer commits
+- `npm test` can throw `spawn EPERM` inside the restricted sandbox on this Windows setup; use the normal repo validation command outside the sandbox when that happens before treating it as a real test failure

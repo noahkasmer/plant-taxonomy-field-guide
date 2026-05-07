@@ -8,6 +8,7 @@ type GuidedFieldModeProps = {
   currentNode: KeyNode | null;
   stepNumber: number;
   historyLength: number;
+  seedBanner?: string;
   onChoice: (choice: 'a' | 'b') => void;
   onBack: () => void;
   onRestart: () => void;
@@ -29,6 +30,7 @@ export function GuidedFieldMode({
   currentNode,
   stepNumber,
   historyLength,
+  seedBanner,
   onChoice,
   onBack,
   onRestart,
@@ -89,6 +91,12 @@ export function GuidedFieldMode({
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        {seedBanner ? (
+          <View style={styles.seedBanner}>
+            <Text style={styles.seedBannerText}>{seedBanner}</Text>
+          </View>
+        ) : null}
+
         <View style={styles.questionArea}>
           <Text style={styles.questionText}>{currentNode.question}</Text>
           {currentNode.context ? (
@@ -268,5 +276,20 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.68,
+  },
+  seedBanner: {
+    backgroundColor: '#111C16',
+    borderColor: '#2D6844',
+    borderRadius: 10,
+    borderWidth: 1,
+    marginBottom: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  seedBannerText: {
+    color: '#7DD4A0',
+    fontSize: 13,
+    fontWeight: '600',
+    letterSpacing: 0.4,
   },
 });
