@@ -5,7 +5,7 @@ Read this before starting. Update this before pushing.
 ---
 
 ## Last updated
-2026-05-07 - Claude
+2026-05-07 - Codex
 
 ---
 
@@ -13,9 +13,9 @@ Read this before starting. Update this before pushing.
 
 | Commit | Agent | What |
 |--------|-------|------|
-| `1a0bcce` | Claude | Two-layer hybrid ID: trait filter → seeded sub-key ⚠️ see note |
+| `1a0bcce` | Claude | Two-layer hybrid ID: trait filter to seeded sub-key |
 | `4bc18a8` | Claude | Phase 2: plain-language dichotomous key with inline diagrams |
-| `8c9e255` | Claude | Added STATUS.md |
+| `e0289a7` | Codex | Fix SQLite typings and leaf photo fallback |
 | `68562a3` | Claude | Black-eyed-susan slot swap; deriveBloomSeason; 17 imageSources fixes; field-browse route |
 | `a2b0c71` | Claude | 88 iNat life-stage images; guided field key; tab bar to top; CC_BY image fix |
 
@@ -38,6 +38,8 @@ Read this before starting. Update this before pushing.
   - choice-resolution helper that distinguishes node transitions from terminal plant results
   - season-branch suggestion helper for the spring vs summer/fall split in the guided key
   - reachable-node traversal helper for dataset validation
+- [x] Verified `src/services/fieldKeyService.ts` remained intact after Claude commit `1a0bcce`
+- [x] Kept the README/TODO field-flow wording updates and prepared cleanup of `backend/data/licenses.json` line-ending-only noise
 
 ---
 
@@ -54,25 +56,15 @@ Read this before starting. Update this before pushing.
 ## Completed - Claude
 
 - [x] Two-layer hybrid ID flow (commit `1a0bcce`)
-  - `src/utils/keyTraversal.ts`: `findSubKeyEntry` walks key tree to find first disambiguating node for a plant subset
-  - `src/screens/FieldKeyScreen.tsx`: accepts `seedPlantIds` prop; starts at sub-key entry node; filters results to seed set; shows candidate count banner
-  - `app/identify-key.tsx`: new route reading `seeds` query param, renders seeded `FieldKeyScreen`
-  - `src/screens/FieldModeScreen.tsx`: "Still not sure?" banner appears at 2–10 matches, navigates to `/identify-key?seeds=...`
-  - ⚠️ **Lane note for Codex**: `src/services/fieldKeyService.ts` was inadvertently included in this commit (it was untracked in the working tree when Claude staged files). The file itself is Codex's work and is unchanged — but Codex should verify the commit did not alter it and re-own it if needed.
+  - `src/utils/keyTraversal.ts`: `findSubKeyEntry` walks the key tree to find the first disambiguating node for a plant subset
+  - `src/screens/FieldKeyScreen.tsx`: accepts `seedPlantIds` prop, starts at a sub-key entry node, filters results to the seed set, and shows a candidate count banner
+  - `app/identify-key.tsx`: new route reading `seeds` query param and rendering a seeded `FieldKeyScreen`
+  - `src/screens/FieldModeScreen.tsx`: "Still not sure?" banner appears at 2-10 matches and navigates to `/identify-key?seeds=...`
 
 - [x] Phase 2 key UX: all 31 key nodes rewritten in plain language for non-biologists
-  - `src/types/dichotomousKey.ts`: added `hint?`, `diagram?: DiagramType`, `context?` fields
-  - `src/components/GuidedFieldMode.tsx`: renders inline `LeafDiagram` per choice, context box below question, italic hint below label, wrapped in ScrollView
-  - `src/data/dichotomousKey.ts`: all nodes have `context` explanations and most choices have `hint` text; leaf arrangement, stem, and flower form questions have inline diagrams (`opposite`, `alternate`, `basal`, `compound`, `simple`, `ray-disk`, `square-stem`)
-
----
-
-## Completed - Codex (Phase 2 support)
-
-- [x] Strengthened `tests/data/dichotomousKey.test.ts` so the current guided key now verifies:
-  - all nodes remain reachable from `ROOT_NODE_ID`
-  - season-branch helpers map months into the current spring vs summer/fall split
-  - key-choice resolution correctly distinguishes node hops from terminal result lists
+  - `src/types/dichotomousKey.ts`: added `hint?`, `diagram?: DiagramType`, and `context?` fields
+  - `src/components/GuidedFieldMode.tsx`: renders inline `LeafDiagram` per choice, a context box below the question, and italic hint text below the label
+  - `src/data/dichotomousKey.ts`: all nodes have `context` explanations and most choices have `hint` text; leaf arrangement, stem, and flower form questions have inline diagrams
 
 ---
 
@@ -85,8 +77,7 @@ Read this before starting. Update this before pushing.
 
 ## Known issues / watch out for
 
-- `blue-vervain` and `ironweed` still have no bundled leaf-slot image; `PlantDetailScreen` now shows a fallback card instead of failing silently
-- `obedient-plant` still has no bundled leaf-slot image; same fallback applies
-- `README.md`, `TODO.md`, `src/screens/IdentifyScreen.tsx`, `backend/data/licenses.json` still have uncommitted local edits — not part of any agent commit yet
-- `src/services/fieldKeyService.ts` was swept into Claude's commit `1a0bcce` — Codex should verify file integrity
+- `blue-vervain` and `ironweed` still have no bundled leaf-slot image; `PlantDetailScreen` shows a fallback card instead of failing silently
+- `obedient-plant` still has no bundled leaf-slot image; the same fallback applies
+- `README.md`, `TODO.md`, and `src/screens/IdentifyScreen.tsx` may still show local edits until the current cleanup/doc pass is committed
 - `npm test` can throw `spawn EPERM` inside the restricted sandbox on this Windows setup; use the normal repo validation command outside the sandbox when that happens before treating it as a real test failure

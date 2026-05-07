@@ -10,7 +10,7 @@ Offline-first Expo field guide MVP for identifying and browsing common native Il
 - Guided dichotomous-key identification flow with glossary diagrams and optional high-contrast focus mode
 - Fast local search across common name, scientific name, family, synonyms, and descriptive text
 - Filterable browse experience for flower color, bloom month, habitat, plant type, family, and native status
-- Field Mode screen with high-contrast, large-tap trait filtering
+- Field Mode tab with a guided dichotomous key plus a secondary browse-by-trait path
 - Favorites and recently viewed tracking stored locally
 - Legally conservative image pipeline with attribution, license, and review metadata
 - Optional read-only backend mirror for future sync/API work
@@ -76,7 +76,7 @@ npm run db:smoke
 - `Identify`: guided step-by-step key with glossary support and an optional high-contrast focus mode
 - `Search`: fuzzy local search with filter chips and filter modal
 - `Favorites`: locally stored bookmarks
-- `Field Mode`: high-contrast identification workflow
+- `Field Mode`: guided field key with an optional browse-by-trait route
 - `Settings`: theme, offline data reset, cache management, transparency links
 - `Plant Detail`: field traits, descriptions, similar species, reviewed images, attribution, and source transparency
 - `About`: source transparency page

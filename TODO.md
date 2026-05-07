@@ -13,6 +13,7 @@
 - [x] Add Zustand app state/bootstrap flow
 - [x] Build tab/navigation structure for home, search, favorites, field mode, and settings
 - [x] Port a guided identification flow with glossary support onto the current app architecture
+- [x] Normalize bloom-season seed metadata and keep trait-browse available as a secondary field workflow
 - [x] Build filters, plant detail, about/data sources, and licenses screens
 - [x] Add offline data management and image cache controls
 - [x] Add source transparency and attribution/license documentation
