@@ -5,7 +5,7 @@ Read this before starting. Update this before pushing.
 ---
 
 ## Last updated
-2026-05-07 - Codex
+2026-05-07 - Claude
 
 ---
 
@@ -13,7 +13,8 @@ Read this before starting. Update this before pushing.
 
 | Commit | Agent | What |
 |--------|-------|------|
-| (pending) | Claude | Phase 2: plain-language dichotomous key with inline diagrams and botanical glossary |
+| `1a0bcce` | Claude | Two-layer hybrid ID: trait filter → seeded sub-key ⚠️ see note |
+| `4bc18a8` | Claude | Phase 2: plain-language dichotomous key with inline diagrams |
 | `8c9e255` | Claude | Added STATUS.md |
 | `68562a3` | Claude | Black-eyed-susan slot swap; deriveBloomSeason; 17 imageSources fixes; field-browse route |
 | `a2b0c71` | Claude | 88 iNat life-stage images; guided field key; tab bar to top; CC_BY image fix |
@@ -52,6 +53,13 @@ Read this before starting. Update this before pushing.
 
 ## Completed - Claude
 
+- [x] Two-layer hybrid ID flow (commit `1a0bcce`)
+  - `src/utils/keyTraversal.ts`: `findSubKeyEntry` walks key tree to find first disambiguating node for a plant subset
+  - `src/screens/FieldKeyScreen.tsx`: accepts `seedPlantIds` prop; starts at sub-key entry node; filters results to seed set; shows candidate count banner
+  - `app/identify-key.tsx`: new route reading `seeds` query param, renders seeded `FieldKeyScreen`
+  - `src/screens/FieldModeScreen.tsx`: "Still not sure?" banner appears at 2–10 matches, navigates to `/identify-key?seeds=...`
+  - ⚠️ **Lane note for Codex**: `src/services/fieldKeyService.ts` was inadvertently included in this commit (it was untracked in the working tree when Claude staged files). The file itself is Codex's work and is unchanged — but Codex should verify the commit did not alter it and re-own it if needed.
+
 - [x] Phase 2 key UX: all 31 key nodes rewritten in plain language for non-biologists
   - `src/types/dichotomousKey.ts`: added `hint?`, `diagram?: DiagramType`, `context?` fields
   - `src/components/GuidedFieldMode.tsx`: renders inline `LeafDiagram` per choice, context box below question, italic hint below label, wrapped in ScrollView
@@ -79,5 +87,6 @@ Read this before starting. Update this before pushing.
 
 - `blue-vervain` and `ironweed` still have no bundled leaf-slot image; `PlantDetailScreen` now shows a fallback card instead of failing silently
 - `obedient-plant` still has no bundled leaf-slot image; same fallback applies
-- There are unrelated local UI/doc/data edits still present in the working tree (`README.md`, `TODO.md`, `app/identify-key.tsx`, `backend/data/licenses.json`, `src/components/GuidedFieldMode.tsx`, `src/screens/FieldKeyScreen.tsx`, `src/screens/FieldModeScreen.tsx`, `src/screens/IdentifyScreen.tsx`, `src/utils/keyTraversal.ts`) that were not part of the Codex support-layer commits
+- `README.md`, `TODO.md`, `src/screens/IdentifyScreen.tsx`, `backend/data/licenses.json` still have uncommitted local edits — not part of any agent commit yet
+- `src/services/fieldKeyService.ts` was swept into Claude's commit `1a0bcce` — Codex should verify file integrity
 - `npm test` can throw `spawn EPERM` inside the restricted sandbox on this Windows setup; use the normal repo validation command outside the sandbox when that happens before treating it as a real test failure
