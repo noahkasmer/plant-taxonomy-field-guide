@@ -9,12 +9,43 @@ const sharedLastVerified = '2026-05-06';
 const noImageSources: Plant['imageSources'] = [];
 const usfwsImageSources: Plant['imageSources'] = ['USFWS_LIBRARY'];
 
+const monthSeasonMap: Record<Plant['bloomMonths'][number], string> = {
+  January: 'winter',
+  February: 'winter',
+  March: 'spring',
+  April: 'spring',
+  May: 'spring',
+  June: 'summer',
+  July: 'summer',
+  August: 'summer',
+  September: 'fall',
+  October: 'fall',
+  November: 'fall',
+  December: 'winter',
+};
+
+const seasonOrder = ['winter', 'spring', 'summer', 'fall'] as const;
+
+function deriveBloomSeason(bloomMonths: Plant['bloomMonths']) {
+  const seasons = bloomMonths.reduce<string[]>((accumulator, month) => {
+    const season = monthSeasonMap[month];
+    if (!accumulator.includes(season)) {
+      accumulator.push(season);
+    }
+    return accumulator;
+  }, []);
+
+  return seasonOrder.filter((season) => seasons.includes(season)).join('-');
+}
+
 function createPlant(
   plant: Omit<
     Plant,
-    'factSources' | 'factSourceNotes' | 'factSummaryMethod' | 'lastVerified'
+    'factSources' | 'factSourceNotes' | 'factSummaryMethod' | 'lastVerified' | 'bloomSeason'
   > &
-    Partial<Pick<Plant, 'factSources' | 'factSourceNotes' | 'factSummaryMethod' | 'lastVerified'>>
+    Partial<
+      Pick<Plant, 'factSources' | 'factSourceNotes' | 'factSummaryMethod' | 'lastVerified' | 'bloomSeason'>
+    >
 ): Plant {
   return {
     factSources: sharedFactSources,
@@ -22,6 +53,7 @@ function createPlant(
     factSummaryMethod: sharedFactSummaryMethod,
     lastVerified: sharedLastVerified,
     ...plant,
+    bloomSeason: deriveBloomSeason(plant.bloomMonths),
   };
 }
 
@@ -35,6 +67,7 @@ export const plants: Plant[] = [
     species: 'hirta',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Summer',
     imageSources: ['WIKIMEDIA_COMMONS', 'USDA', 'USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['prairie', 'forest', 'savanna', 'glade', 'roadside'],
     flowerColors: ['yellow', 'brown'],
@@ -87,7 +120,7 @@ export const plants: Plant[] = [
         licenseStatus: 'verified',
         commercialUseReviewed: true,
         attributionRequired: true,
-        caption: 'Close-up flower detail of black eyed susan.',
+        caption: 'Seed head / fruit of black eyed susan (formerly labeled detail).',
       },
       {
         id: 'black-eyed-susan-inat-fruit',
@@ -101,7 +134,7 @@ export const plants: Plant[] = [
         licenseStatus: 'verified',
         commercialUseReviewed: true,
         attributionRequired: true,
-        caption: 'Seed head / fruit of black eyed susan.',
+        caption: 'Flower detail of black eyed susan.',
       },
       {
         id: 'black-eyed-susan-inat-leaf',
@@ -128,6 +161,7 @@ export const plants: Plant[] = [
     species: 'virginica',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Late spring',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'floodplain', 'fen', 'marsh', 'streambank'],
     flowerColors: ['blue', 'purple'],
@@ -217,7 +251,7 @@ export const plants: Plant[] = [
     species: 'tuberosa',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['prairie', 'savanna', 'woodland', 'glade', 'roadside', 'dry field'],
     bloomSeason: 'June to September',
     flowerColors: ['orange', 'yellow'],
@@ -307,7 +341,7 @@ export const plants: Plant[] = [
     species: 'cardinalis',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['wet prairie', 'floodplain', 'meadow', 'streambank', 'marsh', 'woodland'],
     bloomSeason: 'July to September',
     flowerColors: ['red'],
@@ -397,7 +431,7 @@ export const plants: Plant[] = [
     species: 'purpurea',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['prairie', 'woodland', 'savanna', 'glade'],
     bloomSeason: 'June to September',
     flowerColors: ['purple', 'pink'],
@@ -487,7 +521,7 @@ export const plants: Plant[] = [
     species: 'pycnostachya',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['prairie', 'meadow', 'glade', 'roadside'],
     bloomSeason: 'August to September',
     flowerColors: ['pink', 'purple'],
@@ -668,7 +702,7 @@ export const plants: Plant[] = [
     species: 'incarnata',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['floodplain', 'marsh', 'fen', 'wet prairie', 'streambank', 'disturbed area'],
     bloomSeason: 'July to September',
     flowerColors: ['pink'],
@@ -758,7 +792,7 @@ export const plants: Plant[] = [
     species: 'fistulosa',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['prairie', 'savanna', 'woodland', 'glade', 'disturbed area'],
     bloomSeason: 'July to August',
     flowerColors: ['pink', 'purple'],
@@ -848,7 +882,7 @@ export const plants: Plant[] = [
     species: 'canadensis',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['woodland', 'savanna', 'glade', 'fen', 'bog', 'roadside'],
     bloomSeason: 'May to June',
     flowerColors: ['red', 'yellow'],
@@ -938,7 +972,8 @@ export const plants: Plant[] = [
     species: 'syriaca',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Summer',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['meadow', 'roadside', 'disturbed area', 'dry field', 'savanna'],
     flowerColors: ['pink', 'purple'],
     bloomMonths: ['June', 'July', 'August'],
@@ -1027,6 +1062,7 @@ export const plants: Plant[] = [
     species: 'aurea',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Late spring',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['prairie', 'meadow', 'savanna', 'wet prairie', 'roadside'],
     flowerColors: ['yellow'],
@@ -1116,7 +1152,8 @@ export const plants: Plant[] = [
     species: 'siphilitica',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Late summer to fall',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'streambank', 'floodplain', 'woodland'],
     flowerColors: ['blue'],
     bloomMonths: ['August', 'September'],
@@ -1205,7 +1242,8 @@ export const plants: Plant[] = [
     species: 'virginica',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Spring',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['floodplain', 'woodland', 'forest', 'streambank'],
     flowerColors: ['blue', 'pink'],
     bloomMonths: ['April', 'May'],
@@ -1294,7 +1332,8 @@ export const plants: Plant[] = [
     species: 'maculatum',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Late spring',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['woodland', 'forest', 'savanna', 'floodplain'],
     flowerColors: ['pink', 'purple'],
     bloomMonths: ['May', 'June'],
@@ -1383,7 +1422,8 @@ export const plants: Plant[] = [
     species: 'peltatum',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Spring',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['woodland', 'forest', 'floodplain'],
     flowerColors: ['white'],
     bloomMonths: ['May'],
@@ -1472,7 +1512,8 @@ export const plants: Plant[] = [
     species: 'canadensis',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Early spring',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['woodland', 'forest', 'floodplain'],
     flowerColors: ['white'],
     bloomMonths: ['March', 'April'],
@@ -1561,7 +1602,8 @@ export const plants: Plant[] = [
     species: 'triphyllum',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Spring',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['woodland', 'forest', 'floodplain', 'streambank'],
     flowerColors: ['green', 'maroon'],
     bloomMonths: ['April', 'May'],
@@ -1650,6 +1692,7 @@ export const plants: Plant[] = [
     species: 'perfoliatum',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Midsummer to fall',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'marsh', 'streambank', 'wetland edge'],
     flowerColors: ['white'],
@@ -1739,6 +1782,7 @@ export const plants: Plant[] = [
     species: 'maculatum',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Midsummer to fall',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['wet prairie', 'wetland edge', 'marsh', 'streambank', 'floodplain'],
     flowerColors: ['pink', 'purple'],
@@ -1828,7 +1872,8 @@ export const plants: Plant[] = [
     species: 'novae-angliae',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Fall',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'roadside', 'disturbed area', 'wetland edge'],
     flowerColors: ['purple', 'pink', 'yellow'],
     bloomMonths: ['September', 'October'],
@@ -1917,6 +1962,7 @@ export const plants: Plant[] = [
     species: 'rigida',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Late summer to fall',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['prairie', 'savanna', 'glade', 'roadside'],
     flowerColors: ['yellow'],
@@ -2007,7 +2053,8 @@ export const plants: Plant[] = [
     species: 'hastata',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Midsummer to fall',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'wetland edge', 'streambank', 'disturbed area'],
     flowerColors: ['blue', 'purple'],
     bloomMonths: ['July', 'August', 'September'],
@@ -2068,7 +2115,8 @@ export const plants: Plant[] = [
     species: 'virginiana',
     plantType: 'wildflower',
     nativeStatus: 'native',
-    imageSources: usfwsImageSources,
+    bloomSeason: 'Midsummer to fall',
+    imageSources: ['USFWS_LIBRARY', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'streambank', 'floodplain', 'wetland edge'],
     flowerColors: ['pink', 'purple', 'white'],
     bloomMonths: ['July', 'August', 'September'],
@@ -2143,6 +2191,7 @@ export const plants: Plant[] = [
     species: 'perfoliatum',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Midsummer to fall',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'floodplain', 'roadside'],
     flowerColors: ['yellow'],
@@ -2232,6 +2281,7 @@ export const plants: Plant[] = [
     species: 'laciniatum',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Midsummer',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['prairie', 'savanna', 'roadside', 'dry field'],
     flowerColors: ['yellow'],
@@ -2321,6 +2371,7 @@ export const plants: Plant[] = [
     species: 'yuccifolium',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Midsummer',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['prairie', 'savanna', 'glade', 'roadside'],
     flowerColors: ['white', 'green'],
@@ -2410,6 +2461,7 @@ export const plants: Plant[] = [
     species: 'virginicum',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Midsummer',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'savanna', 'roadside'],
     flowerColors: ['white'],
@@ -2499,6 +2551,7 @@ export const plants: Plant[] = [
     species: 'fasciculata',
     plantType: 'wildflower',
     nativeStatus: 'native',
+    bloomSeason: 'Midsummer to fall',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['wet prairie', 'meadow', 'wetland edge', 'floodplain'],
     flowerColors: ['purple'],
@@ -2560,6 +2613,7 @@ export const plants: Plant[] = [
     species: 'sericea',
     plantType: 'shrub',
     nativeStatus: 'native',
+    bloomSeason: 'Late spring',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['wetland edge', 'streambank', 'floodplain', 'marsh', 'roadside'],
     flowerColors: ['white'],
@@ -2649,6 +2703,7 @@ export const plants: Plant[] = [
     species: 'quinquefolia',
     plantType: 'vine',
     nativeStatus: 'native',
+    bloomSeason: 'Early summer',
     imageSources: ['WIKIMEDIA_COMMONS', 'INATURALIST'],
     habitats: ['woodland', 'forest', 'savanna', 'roadside', 'disturbed area'],
     flowerColors: ['green'],

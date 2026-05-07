@@ -10,6 +10,7 @@ type GuidedFieldModeProps = {
   onChoice: (choice: 'a' | 'b') => void;
   onBack: () => void;
   onRestart: () => void;
+  onBrowseByTrait: () => void;
   onOpenGlossary: () => void;
   onExitFieldMode: () => void;
 };
@@ -29,6 +30,7 @@ export function GuidedFieldMode({
   onChoice,
   onBack,
   onRestart,
+  onBrowseByTrait,
   onOpenGlossary,
   onExitFieldMode,
 }: GuidedFieldModeProps) {
@@ -53,6 +55,14 @@ export function GuidedFieldMode({
         <Text style={styles.stepText}>STEP {stepNumber}</Text>
 
         <View style={styles.topBarActions}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Browse plants by trait"
+            onPress={onBrowseByTrait}
+            style={({ pressed }) => [styles.topBarButton, pressed && styles.pressed]}
+          >
+            <Text style={styles.exitText}>Traits</Text>
+          </Pressable>
           <Pressable
             accessibilityRole="button"
             accessibilityLabel="Open field glossary"

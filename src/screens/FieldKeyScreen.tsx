@@ -79,6 +79,13 @@ export function FieldKeyScreen() {
           <View style={styles.topBarActions}>
             <Pressable
               accessibilityRole="button"
+              onPress={() => router.push('/field-browse')}
+              style={({ pressed }) => [styles.topBarButton, pressed && styles.pressed]}
+            >
+              <Text style={styles.accentText}>Traits</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
               onPress={() => setGlossaryOpen(true)}
               style={({ pressed }) => [styles.topBarButton, pressed && styles.pressed]}
             >
@@ -155,6 +162,7 @@ export function FieldKeyScreen() {
         onChoice={handleChoice}
         onBack={handleBack}
         onRestart={handleRestart}
+        onBrowseByTrait={() => router.push('/field-browse')}
         onOpenGlossary={() => setGlossaryOpen(true)}
         onExitFieldMode={() => router.push('/(tabs)')}
       />
