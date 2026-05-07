@@ -14,7 +14,8 @@ export type ImageSourceName =
   | 'NPS'
   | 'USDA'
   | 'LIBRARY_OF_CONGRESS'
-  | 'WIKIMEDIA_COMMONS';
+  | 'WIKIMEDIA_COMMONS'
+  | 'INATURALIST';
 
 export type FactSummaryMethod = 'manual_paraphrase';
 export type LicenseStatus = 'verified' | 'review_required' | 'blocked';
@@ -113,7 +114,7 @@ export type StemType =
   | 'vining'
   | 'woody';
 
-export type ImageSlot = 'hero' | 'detail' | 'habitat';
+export type ImageSlot = 'hero' | 'detail' | 'habitat' | 'leaf' | 'fruit';
 export type PlantSynonymKind = 'common' | 'scientific' | 'regional';
 export type TagCategory = 'flower_color' | 'field_cue' | 'habitat' | 'season';
 

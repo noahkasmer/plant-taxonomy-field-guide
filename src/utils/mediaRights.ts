@@ -1,15 +1,16 @@
 import type { PlantImage } from '@/types/plant';
 
-const attributionSourceLabels = {
+const attributionSourceLabels: Record<string, string> = {
   USFWS_LIBRARY: 'U.S. Fish and Wildlife Service Library',
   NPS: 'National Park Service',
   USDA: 'U.S. Department of Agriculture',
   LIBRARY_OF_CONGRESS: 'Library of Congress',
   WIKIMEDIA_COMMONS: 'Wikimedia Commons',
-} as const;
+  INATURALIST: 'iNaturalist',
+};
 
-function formatAttributionSource(source: PlantImage['source']) {
-  return attributionSourceLabels[source];
+function formatAttributionSource(source: string) {
+  return attributionSourceLabels[source] ?? source;
 }
 
 export function isPreferredCommercialImageSource(image?: PlantImage | null) {
@@ -46,11 +47,17 @@ export function canUseImageInCommercialApp(image?: PlantImage | null) {
     return false;
   }
 
-  if (image.license !== 'PUBLIC_DOMAIN' && image.license !== 'CC0') {
-    return false;
+  // PUBLIC_DOMAIN / CC0: unconditionally usable
+  if (image.license === 'PUBLIC_DOMAIN' || image.license === 'CC0') {
+    return true;
   }
 
-  return isPreferredCommercialImageSource(image) || image.source === 'WIKIMEDIA_COMMONS';
+  // CC_BY / CC_BY_SA: commercially usable with attribution (no NC restriction)
+  if (image.license === 'CC_BY' || image.license === 'CC_BY_SA') {
+    return true;
+  }
+
+  return false;
 }
 
 export function getAttributionText(image: PlantImage) {

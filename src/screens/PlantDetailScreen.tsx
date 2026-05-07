@@ -25,7 +25,13 @@ import {
 } from '@/utils/plants';
 import { getBundledPlantImageSource } from '@/utils/imageAssets';
 
-const imageSlots = ['hero', 'detail', 'habitat'] as const;
+const slotLabels: Record<string, string> = {
+  hero: 'Hero',
+  detail: 'Flower Detail',
+  fruit: 'Fruit / Seed',
+  leaf: 'Leaf',
+  habitat: 'Habitat',
+};
 
 export function PlantDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -120,51 +126,45 @@ export function PlantDetailScreen() {
             title="Photos"
             subtitle="Only reviewed locally bundled images are shown in the live app."
           />
-          {imageSlots.map((slot) => {
-            const image = usableImages.find((entry) => entry.slot === slot);
-            const source = image ? getBundledPlantImageSource(image) : null;
-
-            return (
-              <View
-                key={slot}
-                style={[
-                  tw`mb-4 overflow-hidden rounded-card border`,
-                  isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
-                ]}
-              >
-                {image && source ? (
-                  <>
-                    <Image
-                      source={source}
-                      contentFit="cover"
-                      cachePolicy="memory-disk"
-                      style={tw`h-56 w-full`}
-                    />
-                    <View style={tw`gap-3 p-4`}>
-                      <Text style={[tw`text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
-                        {slot} image
-                      </Text>
-                      {image.caption ? (
-                        <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
-                          {image.caption}
-                        </Text>
-                      ) : null}
-                      <Attribution image={image} />
-                    </View>
-                  </>
-                ) : (
-                  <View style={tw`gap-3 p-5`}>
+          {usableImages.filter((img) => getBundledPlantImageSource(img) !== null).length === 0 ? (
+            <View style={[tw`rounded-card border p-5`, isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`]}>
+              <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                No reviewed photos are bundled for this plant yet.
+              </Text>
+            </View>
+          ) : (
+            usableImages.map((image) => {
+              const source = getBundledPlantImageSource(image);
+              if (!source) return null;
+              return (
+                <View
+                  key={image.id}
+                  style={[
+                    tw`mb-4 overflow-hidden rounded-card border`,
+                    isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+                  ]}
+                >
+                  <Image
+                    source={source}
+                    contentFit="contain"
+                    cachePolicy="memory-disk"
+                    style={[tw`w-full`, { aspectRatio: 4 / 3, backgroundColor: '#0a1f14' }]}
+                  />
+                  <View style={tw`gap-3 p-4`}>
                     <Text style={[tw`text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
-                      {slot} image
+                      {slotLabels[image.slot] ?? image.slot}
                     </Text>
-                    <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
-                      No locally bundled reviewed image is available for this slot yet.
-                    </Text>
+                    {image.caption ? (
+                      <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                        {image.caption}
+                      </Text>
+                    ) : null}
+                    <Attribution image={image} />
                   </View>
-                )}
-              </View>
-            );
-          })}
+                </View>
+              );
+            })
+          )}
         </View>
 
         <View style={tw`mt-2 gap-4`}>

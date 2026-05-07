@@ -1,5 +1,5 @@
-import { FieldModeScreen } from '@/screens/FieldModeScreen';
+import { FieldKeyScreen } from '@/screens/FieldKeyScreen';
 
 export default function FieldRoute() {
-  return <FieldModeScreen />;
+  return <FieldKeyScreen />;
 }

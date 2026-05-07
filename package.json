@@ -11,6 +11,8 @@
     "server": "node backend/server.js",
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/data/validateCatalog.test.ts tests/data/dichotomousKey.test.ts tests/search/searchService.test.ts tests/db/sqliteSeed.test.ts",
+    "data:download-images": "node --import tsx scripts/download-plant-images.ts",
+    "data:fetch-stages": "node --import tsx scripts/fetch-inaturalist-stages.ts",
     "data:validate": "node --import tsx scripts/validate-catalog.ts",
     "data:export-backend": "node --import tsx scripts/export-backend-data.ts",
     "db:smoke": "node --import tsx scripts/sqlite-smoke.ts"

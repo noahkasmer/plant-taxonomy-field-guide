@@ -14,9 +14,14 @@ export default function TabsLayout() {
         },
         headerTintColor: palette.text,
         headerShadowVisible: false,
+        tabBarPosition: 'top',
         tabBarStyle: {
           backgroundColor: palette.background,
-          borderTopColor: palette.border,
+          borderBottomColor: palette.border,
+          borderBottomWidth: 1,
+          borderTopWidth: 0,
+          elevation: 0,
+          shadowOpacity: 0,
         },
         tabBarActiveTintColor: palette.primary,
         tabBarInactiveTintColor: palette.textSubtle,
@@ -59,6 +64,7 @@ export default function TabsLayout() {
         name="field"
         options={{
           title: 'Field',
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="compass-outline" color={color} size={size} />
           ),
