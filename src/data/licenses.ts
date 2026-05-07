@@ -1,0 +1,49 @@
+import type { LicenseCatalogEntry } from '@/types/plant';
+
+export const licenseCatalog: LicenseCatalogEntry[] = [
+  {
+    id: 'PUBLIC_DOMAIN',
+    label: 'Public Domain',
+    sourceUrl: 'https://www.usa.gov/government-works',
+    attributionRequired: true,
+    commercialSafeDefault: true,
+    usageNotes:
+      'Preferred for live app display when the specific asset page confirms public-domain status or U.S. Government origin.',
+  },
+  {
+    id: 'CC0',
+    label: 'CC0',
+    sourceUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    attributionRequired: false,
+    commercialSafeDefault: true,
+    usageNotes:
+      'Commercially safe for live display when the asset metadata is complete and the release is verified.',
+  },
+  {
+    id: 'CC_BY',
+    label: 'CC BY',
+    sourceUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    attributionRequired: true,
+    commercialSafeDefault: false,
+    usageNotes:
+      'Allowed by the model only when attribution metadata is complete, but not used for default commercial-safe live rendering.',
+  },
+  {
+    id: 'CC_BY_SA',
+    label: 'CC BY-SA',
+    sourceUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    attributionRequired: true,
+    commercialSafeDefault: false,
+    usageNotes:
+      'Allowed by the model only when attribution metadata is complete, but not used for default commercial-safe live rendering.',
+  },
+  {
+    id: 'UNKNOWN',
+    label: 'Unknown',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia',
+    attributionRequired: true,
+    commercialSafeDefault: false,
+    usageNotes:
+      'Blocked from import and live display unless the license is later reviewed and explicitly verified.',
+  },
+];

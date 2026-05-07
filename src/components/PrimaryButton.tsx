@@ -1,9 +1,12 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, Text } from 'react-native';
+
+import { useAppTheme } from '@/hooks/useAppTheme';
+import tw from '@/theme/tw';
 
 type PrimaryButtonProps = {
   label: string;
   onPress: () => void;
-  tone?: 'primary' | 'secondary';
+  tone?: 'primary' | 'secondary' | 'ghost';
 };
 
 export function PrimaryButton({
@@ -11,51 +14,37 @@ export function PrimaryButton({
   onPress,
   tone = 'primary',
 }: PrimaryButtonProps) {
+  const { isDark } = useAppTheme();
+
+  const containerStyle =
+    tone === 'primary'
+      ? isDark
+        ? tw`bg-fern border border-fern`
+        : tw`bg-moss border border-moss`
+      : tone === 'secondary'
+        ? isDark
+          ? tw`bg-pine border border-fern`
+          : tw`bg-mist border border-fern`
+        : tw`bg-transparent border border-transparent`;
+
+  const labelStyle =
+    tone === 'primary'
+      ? tw`text-white`
+      : isDark
+        ? tw`text-sand`
+        : tw`text-moss`;
+
   return (
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
       style={({ pressed }) => [
-        styles.base,
-        tone === 'primary' ? styles.primary : styles.secondary,
-        pressed && styles.pressed,
+        tw`min-h-14 w-full items-center justify-center rounded-2xl px-5`,
+        containerStyle,
+        pressed && tw`opacity-80`,
       ]}
     >
-      <Text style={[styles.label, tone === 'primary' ? styles.primaryLabel : styles.secondaryLabel]}>
-        {label}
-      </Text>
+      <Text style={[tw`text-base font-bold`, labelStyle]}>{label}</Text>
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  base: {
-    alignItems: 'center',
-    borderRadius: 14,
-    minHeight: 56,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    width: '100%',
-  },
-  primary: {
-    backgroundColor: '#2F6B43',
-  },
-  secondary: {
-    backgroundColor: '#DCE8D8',
-    borderColor: '#2F6B43',
-    borderWidth: 1,
-  },
-  pressed: {
-    opacity: 0.85,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  primaryLabel: {
-    color: '#FFFFFF',
-  },
-  secondaryLabel: {
-    color: '#1F3D2F',
-  },
-});

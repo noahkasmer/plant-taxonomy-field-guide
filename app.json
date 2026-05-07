@@ -5,7 +5,11 @@
     "scheme": "planttaxonomyfieldguide",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "light",
-    "plugins": ["expo-router"]
+    "userInterfaceStyle": "automatic",
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      "expo-image"
+    ]
   }
 }

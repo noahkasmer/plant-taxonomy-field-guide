@@ -1,0 +1,1986 @@
+[
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "black-eyed-susan",
+    "commonName": "Black-Eyed Susan",
+    "scientificName": "Rudbeckia hirta",
+    "family": "Asteraceae",
+    "genus": "Rudbeckia",
+    "species": "hirta",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "WIKIMEDIA_COMMONS",
+      "USDA",
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "prairie",
+      "forest",
+      "savanna",
+      "glade",
+      "roadside"
+    ],
+    "flowerColors": [
+      "yellow",
+      "brown"
+    ],
+    "bloomMonths": [
+      "June",
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "lanceolate",
+    "leafMargin": "toothed",
+    "stemType": "hairy",
+    "heightRangeInches": {
+      "min": 12,
+      "max": 30
+    },
+    "identificationDescription": "Bright yellow daisy-like heads with a dark raised center make this one of the easiest summer prairie flowers to recognize.",
+    "leafDescription": "Leaves are rough, hairy, and mostly lance-shaped, with broader lower leaves and narrower upper leaves.",
+    "flowerDescription": "Each stem usually carries a single flower head with golden rays around a dark brown disk.",
+    "habitatDescription": "Found in prairies, openings, savannas, and sunny disturbed ground across much of Illinois.",
+    "notes": "Short-lived but quick to establish, especially in restored prairies and roadside plantings.",
+    "similarSpeciesIds": [
+      "eastern-purple-coneflower",
+      "stiff-goldenrod"
+    ],
+    "synonyms": [
+      {
+        "term": "orange coneflower",
+        "kind": "common"
+      },
+      {
+        "term": "gloriosa daisy",
+        "kind": "regional"
+      }
+    ],
+    "images": [
+      {
+        "id": "black-eyed-susan-hero",
+        "slot": "hero",
+        "assetKey": "black-eyed-susan-barnes-closeup",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Rudbeckia_hirta_inflorescence_and_bud.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Rudbeckia_hirta_inflorescence_and_bud.jpg",
+        "photographer": "Dr. Thomas G. Barnes, U.S. Fish and Wildlife Service",
+        "source": "WIKIMEDIA_COMMONS",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Close-up flower and bud view used as the primary offline field image."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "blue-flag-iris",
+    "commonName": "Blue Flag Iris",
+    "scientificName": "Iris virginica shrevei",
+    "family": "Iridaceae",
+    "genus": "Iris",
+    "species": "virginica",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "floodplain",
+      "fen",
+      "marsh",
+      "streambank"
+    ],
+    "flowerColors": [
+      "blue",
+      "purple"
+    ],
+    "bloomMonths": [
+      "May",
+      "June"
+    ],
+    "leafArrangement": "basal",
+    "leafShape": "linear",
+    "leafMargin": "entire",
+    "stemType": "clumping",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 36
+    },
+    "identificationDescription": "A wetland iris with fans of sword-like leaves and blue-violet blossoms held just above the foliage.",
+    "leafDescription": "Leaves are long, flat, and strongly sword-shaped, rising from the base in dense fans.",
+    "flowerDescription": "Flowers are blue to violet with broad drooping sepals and lighter signal markings near the throat.",
+    "habitatDescription": "Most often found in wet meadows, marsh edges, sedge meadows, and along shallow water margins.",
+    "notes": "A reliable indicator of persistent moisture and one of the most recognizable native wetland flowers.",
+    "similarSpeciesIds": [
+      "cardinal-flower",
+      "great-blue-lobelia"
+    ],
+    "synonyms": [
+      {
+        "term": "southern blue flag",
+        "kind": "regional"
+      }
+    ],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "butterfly-milkweed",
+    "commonName": "Butterfly Milkweed",
+    "scientificName": "Asclepias tuberosa",
+    "family": "Apocynaceae",
+    "genus": "Asclepias",
+    "species": "tuberosa",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "prairie",
+      "savanna",
+      "woodland",
+      "glade",
+      "roadside",
+      "dry field"
+    ],
+    "flowerColors": [
+      "orange",
+      "yellow"
+    ],
+    "bloomMonths": [
+      "June",
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "lanceolate",
+    "leafMargin": "entire",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 12,
+      "max": 30
+    },
+    "identificationDescription": "Clusters of brilliant orange flowers and narrow alternate leaves make this milkweed stand out immediately.",
+    "leafDescription": "Leaves are narrow to lance-shaped, usually alternate, and lack the broad opposite pattern common in other milkweeds.",
+    "flowerDescription": "Flower clusters are dense and upright, typically vivid orange with occasional yellow tones.",
+    "habitatDescription": "Thrives in dry prairies, rocky openings, and sunny roadside remnants with well-drained soil.",
+    "notes": "A favorite for monarch habitat plantings, though it usually appears shorter and tidier than common milkweed.",
+    "similarSpeciesIds": [
+      "common-milkweed",
+      "swamp-milkweed"
+    ],
+    "synonyms": [
+      {
+        "term": "pleurisy root",
+        "kind": "common"
+      }
+    ],
+    "images": [
+      {
+        "id": "butterfly-milkweed-hero",
+        "slot": "hero",
+        "assetKey": "butterfly-milkweed-usfws-hagerty",
+        "url": "https://www.fws.gov/sites/default/files/images/2015-09/18195.jpg",
+        "originalUrl": "https://www.fws.gov/media/butterfly-weed-5",
+        "photographer": "Ryan Hagerty/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Butterfly milkweed with bright orange flower clusters."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "cardinal-flower",
+    "commonName": "Cardinal Flower",
+    "scientificName": "Lobelia cardinalis",
+    "family": "Campanulaceae",
+    "genus": "Lobelia",
+    "species": "cardinalis",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "wet prairie",
+      "floodplain",
+      "meadow",
+      "streambank",
+      "marsh",
+      "woodland"
+    ],
+    "flowerColors": [
+      "red"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "hairy",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 42
+    },
+    "identificationDescription": "Tall spikes of intense scarlet flowers rise above wet ground in late summer and are hard to mistake.",
+    "leafDescription": "Leaves are lance-shaped, toothed, and arranged alternately along an upright stem.",
+    "flowerDescription": "The flowers are tubular and bright red, arranged along one side of the spike with protruding stamens.",
+    "habitatDescription": "Common in wet ditches, streambanks, prairie swales, and other sunny to lightly shaded wet places.",
+    "notes": "A standout late-season species that draws hummingbirds and anchors wetland pollinator gardens.",
+    "similarSpeciesIds": [
+      "great-blue-lobelia",
+      "blue-vervain"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "cardinal-flower-hero",
+        "slot": "hero",
+        "assetKey": "cardinal-flower-usfws-barnes",
+        "url": "https://www.fws.gov/sites/default/files/images/2005-06/8071.jpg",
+        "originalUrl": "https://www.fws.gov/media/cardinal-flower-0",
+        "photographer": "Dr. Thomas G. Barnes/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Cardinal flower in bloom with a close view of the scarlet spike."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "eastern-purple-coneflower",
+    "commonName": "Eastern Purple Coneflower",
+    "scientificName": "Echinacea purpurea",
+    "family": "Asteraceae",
+    "genus": "Echinacea",
+    "species": "purpurea",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "prairie",
+      "woodland",
+      "savanna",
+      "glade"
+    ],
+    "flowerColors": [
+      "purple",
+      "pink"
+    ],
+    "bloomMonths": [
+      "June",
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "ovate",
+    "leafMargin": "toothed",
+    "stemType": "branching",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 42
+    },
+    "identificationDescription": "Large purple-pink flower heads with drooping rays and a spiny orange-brown cone make this species easy to spot.",
+    "leafDescription": "Basal leaves are broad and rough while stem leaves become narrower upward; all feel coarse to the touch.",
+    "flowerDescription": "Each flower head shows long drooping ray florets around a prominent raised cone.",
+    "habitatDescription": "Most common in open woodlands, prairie edges, savannas, and long-established plantings.",
+    "notes": "Widely planted but also native, so it can appear both in remnants and landscaped restorations.",
+    "similarSpeciesIds": [
+      "black-eyed-susan",
+      "prairie-blazingstar"
+    ],
+    "synonyms": [
+      {
+        "term": "purple coneflower",
+        "kind": "common"
+      }
+    ],
+    "images": [
+      {
+        "id": "eastern-purple-coneflower-hero",
+        "slot": "hero",
+        "assetKey": "purple-coneflower-usfws-rollman",
+        "url": "https://www.fws.gov/sites/default/files/2022-07/purple-coneflower-Alabma-ES.jpg",
+        "originalUrl": "https://www.fws.gov/media/purple-coneflower-echinacea-purpurea",
+        "photographer": "Drew Rollman/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Purple coneflower bloom on an official USFWS species media page."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "prairie-blazingstar",
+    "commonName": "Prairie Blazingstar",
+    "scientificName": "Liatris pycnostachya",
+    "family": "Asteraceae",
+    "genus": "Liatris",
+    "species": "pycnostachya",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "prairie",
+      "meadow",
+      "glade",
+      "roadside"
+    ],
+    "flowerColors": [
+      "pink",
+      "purple"
+    ],
+    "bloomMonths": [
+      "August",
+      "September"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "linear",
+    "leafMargin": "entire",
+    "stemType": "unbranched",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 48
+    },
+    "identificationDescription": "A straight wand of purple flower heads atop an upright stem gives this prairie plant its strong vertical look.",
+    "leafDescription": "Leaves are narrow, grass-like, and densely spaced along the stem, becoming smaller higher up.",
+    "flowerDescription": "Many fluffy purple flower heads are packed into a dense spike from the top downward.",
+    "habitatDescription": "Most common in moist to mesic prairies, open meadows, and sunny roadside prairie restorations.",
+    "notes": "Tall blazingstars are some of the best late-summer nectar plants for prairie insects.",
+    "similarSpeciesIds": [
+      "eastern-purple-coneflower",
+      "ironweed"
+    ],
+    "synonyms": [
+      {
+        "term": "prairie gayfeather",
+        "kind": "common"
+      }
+    ],
+    "images": [
+      {
+        "id": "prairie-blazingstar-hero",
+        "slot": "hero",
+        "assetKey": "prairie-blazingstar-usfws-thompson",
+        "url": "https://www.fws.gov/sites/default/files/banner_images/2021-11/PrairieBlazingStarNickThompson.jpg",
+        "originalUrl": "https://www.fws.gov/media/prairie-blazing-star",
+        "photographer": "Nick Thompson/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Prairie blazingstar blooming on prairie habitat."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "prairie-dock",
+    "commonName": "Prairie Dock",
+    "scientificName": "Silphium terebinthinaceum",
+    "family": "Asteraceae",
+    "genus": "Silphium",
+    "species": "terebinthinaceum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "prairie",
+      "savanna",
+      "glade",
+      "roadside"
+    ],
+    "flowerColors": [
+      "yellow"
+    ],
+    "bloomMonths": [
+      "August",
+      "September"
+    ],
+    "leafArrangement": "rosette",
+    "leafShape": "cordate",
+    "leafMargin": "serrate",
+    "stemType": "clumping",
+    "heightRangeInches": {
+      "min": 36,
+      "max": 120
+    },
+    "identificationDescription": "Huge rough basal leaves and a towering flowering stalk make this one of the most dramatic tallgrass prairie plants.",
+    "leafDescription": "Basal leaves are enormous, heart-based, upright, and sandpapery, often held like paddles above the ground.",
+    "flowerDescription": "Yellow sunflower-like heads are spaced along the very tall stalk well above the leaf rosette.",
+    "habitatDescription": "A hallmark of deep-rooted prairie soils, often in full sun with little competition from woody plants.",
+    "notes": "Even when not in flower, the giant basal leaves make this species recognizable from a distance.",
+    "similarSpeciesIds": [
+      "cup-plant",
+      "compass-plant"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "swamp-milkweed",
+    "commonName": "Swamp Milkweed",
+    "scientificName": "Asclepias incarnata",
+    "family": "Apocynaceae",
+    "genus": "Asclepias",
+    "species": "incarnata",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "floodplain",
+      "marsh",
+      "fen",
+      "wet prairie",
+      "streambank",
+      "disturbed area"
+    ],
+    "flowerColors": [
+      "pink"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "lanceolate",
+    "leafMargin": "entire",
+    "stemType": "branching",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 72
+    },
+    "identificationDescription": "Upright pink flower clusters and narrow opposite leaves point to this moisture-loving milkweed.",
+    "leafDescription": "Leaves are narrow, smooth-edged, and opposite to whorled along the stem.",
+    "flowerDescription": "Flowers form rounded pink clusters with a softer, more refined look than common milkweed.",
+    "habitatDescription": "Best known from wetlands, swales, ditch edges, and consistently moist openings.",
+    "notes": "A useful field contrast with butterfly milkweed because it signals wet ground rather than dry prairie.",
+    "similarSpeciesIds": [
+      "butterfly-milkweed",
+      "common-milkweed"
+    ],
+    "synonyms": [
+      {
+        "term": "rose milkweed",
+        "kind": "regional"
+      }
+    ],
+    "images": [
+      {
+        "id": "swamp-milkweed-hero",
+        "slot": "hero",
+        "assetKey": "swamp-milkweed-usfws-celley",
+        "url": "https://www.fws.gov/sites/default/files/images/2024-12/48404816616_9664076ec8_o.jpg",
+        "originalUrl": "https://www.fws.gov/media/swamp-milkweed-4",
+        "photographer": "Courtney Celley/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Swamp milkweed with pink flower clusters in wetland habitat."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "wild-bergamot",
+    "commonName": "Wild Bergamot",
+    "scientificName": "Monarda fistulosa",
+    "family": "Lamiaceae",
+    "genus": "Monarda",
+    "species": "fistulosa",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "prairie",
+      "savanna",
+      "woodland",
+      "glade",
+      "disturbed area"
+    ],
+    "flowerColors": [
+      "pink",
+      "purple"
+    ],
+    "bloomMonths": [
+      "July",
+      "August"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "square",
+    "heightRangeInches": {
+      "min": 30,
+      "max": 48
+    },
+    "identificationDescription": "This aromatic mint has tufted lavender flower heads and unmistakable square stems.",
+    "leafDescription": "Leaves are opposite, softly toothed, and noticeably fragrant when crushed.",
+    "flowerDescription": "The flower heads are shaggy, with many narrow tubular florets gathered into rounded clusters.",
+    "habitatDescription": "Frequent in sunny prairies and open edges where soils range from dry to moderately moist.",
+    "notes": "A practical field clue is the mint-family stem shape combined with the loose pom-pom flower heads.",
+    "similarSpeciesIds": [
+      "obedient-plant",
+      "blue-vervain"
+    ],
+    "synonyms": [
+      {
+        "term": "bee balm",
+        "kind": "regional"
+      }
+    ],
+    "images": [
+      {
+        "id": "wild-bergamot-hero",
+        "slot": "hero",
+        "assetKey": "wild-bergamot-usfws-hebert",
+        "url": "https://www.fws.gov/sites/default/files/2022-12/Wild%20Bergamot.JPG",
+        "originalUrl": "https://www.fws.gov/media/wild-bergamot",
+        "photographer": "Marcie Hebert/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Wild bergamot with shaggy lavender flower heads."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "wild-columbine",
+    "commonName": "Wild Columbine",
+    "scientificName": "Aquilegia canadensis",
+    "family": "Ranunculaceae",
+    "genus": "Aquilegia",
+    "species": "canadensis",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "woodland",
+      "savanna",
+      "glade",
+      "fen",
+      "bog",
+      "roadside"
+    ],
+    "flowerColors": [
+      "red",
+      "yellow"
+    ],
+    "bloomMonths": [
+      "May",
+      "June"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "compound",
+    "leafMargin": "lobed",
+    "stemType": "branching",
+    "heightRangeInches": {
+      "min": 12,
+      "max": 36
+    },
+    "identificationDescription": "Nodding red-and-yellow flowers with long backward spurs make this spring native immediately distinctive.",
+    "leafDescription": "Leaves are delicate and divided into rounded lobed leaflets that give the plant a soft texture.",
+    "flowerDescription": "The pendant flowers combine red outer parts with yellow petals and long nectar spurs.",
+    "habitatDescription": "Most often seen on rocky wooded slopes, open bluffs, and lightly shaded savanna edges.",
+    "notes": "This is one of the earliest showy native flowers in many upland natural areas.",
+    "similarSpeciesIds": [
+      "virginia-bluebells",
+      "bloodroot"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "wild-columbine-hero",
+        "slot": "hero",
+        "assetKey": "wild-columbine-usfws-hagerty",
+        "url": "https://www.fws.gov/sites/default/files/images/2004-02/13430.jpg",
+        "originalUrl": "https://www.fws.gov/media/columbine",
+        "photographer": "Ryan Hagerty/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Wild columbine with red-and-yellow pendant flowers."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "common-milkweed",
+    "commonName": "Common Milkweed",
+    "scientificName": "Asclepias syriaca",
+    "family": "Apocynaceae",
+    "genus": "Asclepias",
+    "species": "syriaca",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "meadow",
+      "roadside",
+      "disturbed area",
+      "dry field",
+      "savanna"
+    ],
+    "flowerColors": [
+      "pink",
+      "purple"
+    ],
+    "bloomMonths": [
+      "June",
+      "July",
+      "August"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "ovate",
+    "leafMargin": "entire",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 30,
+      "max": 60
+    },
+    "identificationDescription": "A stout milkweed with broad leaves, milky sap, and heavy rounded clusters of dusty pink flowers.",
+    "leafDescription": "Leaves are broad, opposite, thick, and pale beneath, often giving the plant a substantial, almost shrubby look.",
+    "flowerDescription": "The flower clusters are dense and fragrant, usually pink to pink-purple and held near the upper stem.",
+    "habitatDescription": "Common in old fields, roadsides, prairie edges, and other sunny places with moderately dry soil.",
+    "notes": "Its big leaves and coarse habit separate it quickly from swamp and butterfly milkweed.",
+    "similarSpeciesIds": [
+      "swamp-milkweed",
+      "butterfly-milkweed"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "common-milkweed-hero",
+        "slot": "hero",
+        "assetKey": "common-milkweed-usfws-waubay",
+        "url": "https://www.fws.gov/sites/default/files/2021-09/common-milkweed-waubay-nwr-usfws.JPG",
+        "originalUrl": "https://www.fws.gov/media/common-milkweed",
+        "photographer": "USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Common milkweed blooming at Waubay National Wildlife Refuge."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "golden-alexanders",
+    "commonName": "Golden Alexanders",
+    "scientificName": "Zizia aurea",
+    "family": "Apiaceae",
+    "genus": "Zizia",
+    "species": "aurea",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "prairie",
+      "meadow",
+      "savanna",
+      "wet prairie",
+      "roadside"
+    ],
+    "flowerColors": [
+      "yellow"
+    ],
+    "bloomMonths": [
+      "May",
+      "June"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "compound",
+    "leafMargin": "serrate",
+    "stemType": "branching",
+    "heightRangeInches": {
+      "min": 18,
+      "max": 36
+    },
+    "identificationDescription": "Flat-topped yellow umbels and divided parsley-like leaves define this dependable spring prairie species.",
+    "leafDescription": "Leaves are compound with broad toothed leaflets, especially noticeable on the lower plant.",
+    "flowerDescription": "Small bright yellow flowers are grouped into umbrella-like clusters at the ends of branching stems.",
+    "habitatDescription": "Widely found in moist prairies, meadows, and open edges, often flowering before the taller prairie plants wake up.",
+    "notes": "A strong early nectar plant and a good visual marker for late spring in sunny remnants.",
+    "similarSpeciesIds": [
+      "wild-geranium",
+      "virginia-bluebells"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "great-blue-lobelia",
+    "commonName": "Great Blue Lobelia",
+    "scientificName": "Lobelia siphilitica",
+    "family": "Campanulaceae",
+    "genus": "Lobelia",
+    "species": "siphilitica",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "streambank",
+      "floodplain",
+      "woodland"
+    ],
+    "flowerColors": [
+      "blue"
+    ],
+    "bloomMonths": [
+      "August",
+      "September"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "ovate",
+    "leafMargin": "serrate",
+    "stemType": "hairy",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 48
+    },
+    "identificationDescription": "Tall blue flower spikes and toothed leaves mark this wet-ground lobelia in late summer.",
+    "leafDescription": "Leaves are alternate, broad to ovate, and sharply toothed, often along a stout upright stem.",
+    "flowerDescription": "Flowers are larger and bluer than those of cardinal flower, packed along the upper stem in a dense spike.",
+    "habitatDescription": "Found in moist openings, floodplain edges, wet meadows, and stream-adjacent thickets.",
+    "notes": "The color shift from red cardinal flower to blue great blue lobelia is a useful late-season wetland contrast.",
+    "similarSpeciesIds": [
+      "cardinal-flower",
+      "blue-vervain"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "great-blue-lobelia-hero",
+        "slot": "hero",
+        "assetKey": "great-blue-lobelia-usfws-barnes",
+        "url": "https://www.fws.gov/sites/default/files/images/2005-06/8139.jpg",
+        "originalUrl": "https://www.fws.gov/media/great-blue-lobelia",
+        "photographer": "Barnes, Dr. Thomas G./USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Great blue lobelia with large blue flowers in a late-summer spike."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "virginia-bluebells",
+    "commonName": "Virginia Bluebells",
+    "scientificName": "Mertensia virginica",
+    "family": "Boraginaceae",
+    "genus": "Mertensia",
+    "species": "virginica",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "floodplain",
+      "woodland",
+      "forest",
+      "streambank"
+    ],
+    "flowerColors": [
+      "blue",
+      "pink"
+    ],
+    "bloomMonths": [
+      "April",
+      "May"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "ovate",
+    "leafMargin": "entire",
+    "stemType": "clumping",
+    "heightRangeInches": {
+      "min": 12,
+      "max": 24
+    },
+    "identificationDescription": "Soft blue nodding bells rising above smooth gray-green leaves make this a classic spring floodplain wildflower.",
+    "leafDescription": "Leaves are smooth, oval, and slightly glaucous, giving the plant a cool blue-green tone even before bloom.",
+    "flowerDescription": "Pink buds open to clear blue bell-shaped flowers that hang in loose clusters.",
+    "habitatDescription": "Usually found in rich floodplain woods and moist bottomland forests before the tree canopy fully leafs out.",
+    "notes": "The foliage fades quickly after flowering, so it is easiest to find during the short spring display window.",
+    "similarSpeciesIds": [
+      "bloodroot",
+      "wild-columbine"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "virginia-bluebells-hero",
+        "slot": "hero",
+        "assetKey": "virginia-bluebells-usfws-barnes",
+        "url": "https://www.fws.gov/sites/default/files/images/2005-06/8041.jpg",
+        "originalUrl": "https://www.fws.gov/media/virginia-bluebells-4",
+        "photographer": "Dr. Thomas G. Barnes/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Virginia bluebells in bloom on a spring woodland plant."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "wild-geranium",
+    "commonName": "Wild Geranium",
+    "scientificName": "Geranium maculatum",
+    "family": "Geraniaceae",
+    "genus": "Geranium",
+    "species": "maculatum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "woodland",
+      "forest",
+      "savanna",
+      "floodplain"
+    ],
+    "flowerColors": [
+      "pink",
+      "purple"
+    ],
+    "bloomMonths": [
+      "May",
+      "June"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "palmate",
+    "leafMargin": "lobed",
+    "stemType": "branching",
+    "heightRangeInches": {
+      "min": 12,
+      "max": 24
+    },
+    "identificationDescription": "Rounded five-petaled pink flowers and deeply divided palmate leaves identify this common woodland spring perennial.",
+    "leafDescription": "Leaves are palmately cut into broad segments, giving the plant a hand-shaped outline.",
+    "flowerDescription": "Flowers are pink to lavender with five rounded petals and a neat, open face.",
+    "habitatDescription": "Seen most often in deciduous woods, shaded slopes, and forest-edge openings with moderate moisture.",
+    "notes": "The divided leaves make it recognizable even before the first blooms open.",
+    "similarSpeciesIds": [
+      "bloodroot",
+      "golden-alexanders"
+    ],
+    "synonyms": [
+      {
+        "term": "spotted geranium",
+        "kind": "common"
+      }
+    ],
+    "images": [
+      {
+        "id": "wild-geranium-hero",
+        "slot": "hero",
+        "assetKey": "wild-geranium-usfws-hagerty",
+        "url": "https://www.fws.gov/sites/default/files/images/2004-02/13451.jpg",
+        "originalUrl": "https://www.fws.gov/media/wild-geranium",
+        "photographer": "Ryan Hagerty/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Wild geranium with purple petals and green leaves."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "mayapple",
+    "commonName": "Mayapple",
+    "scientificName": "Podophyllum peltatum",
+    "family": "Berberidaceae",
+    "genus": "Podophyllum",
+    "species": "peltatum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "woodland",
+      "forest",
+      "floodplain"
+    ],
+    "flowerColors": [
+      "white"
+    ],
+    "bloomMonths": [
+      "May"
+    ],
+    "leafArrangement": "rosette",
+    "leafShape": "palmate",
+    "leafMargin": "lobed",
+    "stemType": "clumping",
+    "heightRangeInches": {
+      "min": 12,
+      "max": 18
+    },
+    "identificationDescription": "Umbrella-like leaves on paired stems create dense spring colonies on rich woodland floors.",
+    "leafDescription": "Leaves are large, peltate, and deeply lobed, usually one on sterile stems and two on flowering stems.",
+    "flowerDescription": "A single white flower hangs beneath the forked leaves, so it is often hidden unless you look underneath the canopy.",
+    "habitatDescription": "Most common in rich woods and bottomland forests with moist, shaded soils.",
+    "notes": "The leaf architecture is usually easier to notice than the flower, especially from a standing position.",
+    "similarSpeciesIds": [
+      "jack-in-the-pulpit",
+      "bloodroot"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "mayapple-hero",
+        "slot": "hero",
+        "assetKey": "mayapple-usfws-mccoy",
+        "url": "https://www.fws.gov/sites/default/files/images/2015-05/25100.jpg",
+        "originalUrl": "https://www.fws.gov/media/mayapple-bloom-dupont-tract",
+        "photographer": "McCoy, William/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Mayapple colony in bloom with umbrella-like leaves."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "bloodroot",
+    "commonName": "Bloodroot",
+    "scientificName": "Sanguinaria canadensis",
+    "family": "Papaveraceae",
+    "genus": "Sanguinaria",
+    "species": "canadensis",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "woodland",
+      "forest",
+      "floodplain"
+    ],
+    "flowerColors": [
+      "white"
+    ],
+    "bloomMonths": [
+      "March",
+      "April"
+    ],
+    "leafArrangement": "basal",
+    "leafShape": "lobed",
+    "leafMargin": "lobed",
+    "stemType": "clumping",
+    "heightRangeInches": {
+      "min": 6,
+      "max": 12
+    },
+    "identificationDescription": "A single clear white flower opens above a tightly wrapped blue-green leaf very early in spring.",
+    "leafDescription": "Each stem supports one deeply lobed basal leaf that unfurls after flowering and stays longer than the bloom.",
+    "flowerDescription": "The flower is bright white with many yellow stamens and usually opens on sunny spring days.",
+    "habitatDescription": "Most abundant in rich deciduous woods, especially on slopes and streamside terraces.",
+    "notes": "The plant emerges before most woodland herbs, making timing a big clue for identification.",
+    "similarSpeciesIds": [
+      "virginia-bluebells",
+      "wild-geranium"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "bloodroot-hero",
+        "slot": "hero",
+        "assetKey": "bloodroot-usfws-hagerty",
+        "url": "https://www.fws.gov/sites/default/files/images/2004-02/13409.jpg",
+        "originalUrl": "https://www.fws.gov/media/bloodroot",
+        "photographer": "Hagerty, Ryan/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Bloodroot with a white spring flower and fresh leaf."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "jack-in-the-pulpit",
+    "commonName": "Jack-in-the-Pulpit",
+    "scientificName": "Arisaema triphyllum",
+    "family": "Araceae",
+    "genus": "Arisaema",
+    "species": "triphyllum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "woodland",
+      "forest",
+      "floodplain",
+      "streambank"
+    ],
+    "flowerColors": [
+      "green",
+      "maroon"
+    ],
+    "bloomMonths": [
+      "April",
+      "May"
+    ],
+    "leafArrangement": "basal",
+    "leafShape": "compound",
+    "leafMargin": "entire",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 12,
+      "max": 24
+    },
+    "identificationDescription": "Its hooded green or purple-striped spathe with a central club-like spadix makes this woodland plant unmistakable.",
+    "leafDescription": "Most plants show two large divided leaves, each usually with three broad leaflets.",
+    "flowerDescription": "The true flowers are hidden inside the hooded spathe around the central spadix.",
+    "habitatDescription": "Usually found in rich, moist woods and shaded floodplain ground with abundant leaf litter.",
+    "notes": "This is a good reminder that not all showy spring plants have a typical open-petaled flower shape.",
+    "similarSpeciesIds": [
+      "mayapple",
+      "virginia-bluebells"
+    ],
+    "synonyms": [
+      {
+        "term": "Indian turnip",
+        "kind": "regional"
+      }
+    ],
+    "images": [
+      {
+        "id": "jack-in-the-pulpit-hero",
+        "slot": "hero",
+        "assetKey": "jack-in-the-pulpit-usfws-celley",
+        "url": "https://www.fws.gov/sites/default/files/images/2025-05/49937566368_fa148ef94b_o.jpg",
+        "originalUrl": "https://www.fws.gov/media/jack-pulpit-1",
+        "photographer": "Courtney Celley/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Jack-in-the-pulpit showing the hooded spathe above woodland leaves."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "common-boneset",
+    "commonName": "Common Boneset",
+    "scientificName": "Eupatorium perfoliatum",
+    "family": "Asteraceae",
+    "genus": "Eupatorium",
+    "species": "perfoliatum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "marsh",
+      "streambank",
+      "wetland edge"
+    ],
+    "flowerColors": [
+      "white"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "hairy",
+    "heightRangeInches": {
+      "min": 30,
+      "max": 60
+    },
+    "identificationDescription": "This tall wetland composite is best known for opposite leaves that join around the stem like a cup.",
+    "leafDescription": "Leaves are long, sharply toothed, and fused at the base so the stem appears to pierce them.",
+    "flowerDescription": "The white flower heads are fuzzy and packed into broad flat-topped clusters.",
+    "habitatDescription": "Most common in wet meadows, marshes, ditches, and other open ground with dependable summer moisture.",
+    "notes": "The leaf arrangement is the fastest field clue, even before the white blooms open fully.",
+    "similarSpeciesIds": [
+      "joe-pye-weed",
+      "blue-vervain"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "joe-pye-weed",
+    "commonName": "Joe-Pye Weed",
+    "scientificName": "Eutrochium maculatum",
+    "family": "Asteraceae",
+    "genus": "Eutrochium",
+    "species": "maculatum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "wet prairie",
+      "wetland edge",
+      "marsh",
+      "streambank",
+      "floodplain"
+    ],
+    "flowerColors": [
+      "pink",
+      "purple"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "whorled",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 48,
+      "max": 84
+    },
+    "identificationDescription": "A tall, broad-headed late-summer wildflower with mauve flower domes and whorled leaves.",
+    "leafDescription": "Leaves are long, toothed, and usually arranged in whorls that circle the sturdy stem.",
+    "flowerDescription": "Many small pink-purple flowers are packed into large rounded clusters near the top of the plant.",
+    "habitatDescription": "Most common in wet meadows, prairie seeps, marsh edges, and tall herbaceous wetland communities.",
+    "notes": "Even before flowering, the height and whorled leaves help separate it from shorter wetland asters and bonesets.",
+    "similarSpeciesIds": [
+      "common-boneset",
+      "ironweed"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "new-england-aster",
+    "commonName": "New England Aster",
+    "scientificName": "Symphyotrichum novae-angliae",
+    "family": "Asteraceae",
+    "genus": "Symphyotrichum",
+    "species": "novae-angliae",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "roadside",
+      "disturbed area",
+      "wetland edge"
+    ],
+    "flowerColors": [
+      "purple",
+      "pink",
+      "yellow"
+    ],
+    "bloomMonths": [
+      "September",
+      "October"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "lanceolate",
+    "leafMargin": "entire",
+    "stemType": "hairy",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 60
+    },
+    "identificationDescription": "Showy purple late-season daisy heads with yellow centers brighten wet meadows and restoration plantings in fall.",
+    "leafDescription": "Leaves are narrow, clasping, and hairy, often giving the whole plant a rough look.",
+    "flowerDescription": "The flower heads have many purple rays around yellow disks that age toward orange-brown.",
+    "habitatDescription": "Most often planted or found in moist open ground, especially in restoration sites and roadside prairie seedings.",
+    "notes": "A strong fall pollinator plant and one of the last conspicuous native composites before frost.",
+    "similarSpeciesIds": [
+      "stiff-goldenrod",
+      "ironweed"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "new-england-aster-hero",
+        "slot": "hero",
+        "assetKey": "new-england-aster-usfws-hagerty",
+        "url": "https://www.fws.gov/sites/default/files/images/2024-11/new-england-aster.jpg",
+        "originalUrl": "https://www.fws.gov/media/new-england-aster-bloom",
+        "photographer": "Ryan Hagerty/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "New England aster in bloom with purple rays and yellow centers."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "stiff-goldenrod",
+    "commonName": "Stiff Goldenrod",
+    "scientificName": "Solidago rigida",
+    "family": "Asteraceae",
+    "genus": "Solidago",
+    "species": "rigida",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "prairie",
+      "savanna",
+      "glade",
+      "roadside"
+    ],
+    "flowerColors": [
+      "yellow"
+    ],
+    "bloomMonths": [
+      "August",
+      "September",
+      "October"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "ovate",
+    "leafMargin": "entire",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 60
+    },
+    "identificationDescription": "Broad rough leaves and flat-topped yellow clusters give this goldenrod a chunky, sturdy appearance.",
+    "leafDescription": "Lower leaves are broad and thick while upper leaves narrow but remain firm and often gray-green.",
+    "flowerDescription": "Flower heads gather into broad, somewhat flattened clusters rather than long feathery wands.",
+    "habitatDescription": "A common prairie goldenrod of sunny uplands, gravelly shoulders, and open savanna sites.",
+    "notes": "Its flatter flower display is a useful contrast with the plume-like goldenrods often blamed for allergies.",
+    "similarSpeciesIds": [
+      "black-eyed-susan",
+      "new-england-aster"
+    ],
+    "synonyms": [
+      {
+        "term": "rigid goldenrod",
+        "kind": "common"
+      }
+    ],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "blue-vervain",
+    "commonName": "Blue Vervain",
+    "scientificName": "Verbena hastata",
+    "family": "Verbenaceae",
+    "genus": "Verbena",
+    "species": "hastata",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "wetland edge",
+      "streambank",
+      "disturbed area"
+    ],
+    "flowerColors": [
+      "blue",
+      "purple"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "square",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 60
+    },
+    "identificationDescription": "Branched candelabra-like spikes of tiny blue flowers rise above toothed opposite leaves in wet open ground.",
+    "leafDescription": "Leaves are opposite, lance-shaped, and sharply toothed, often with a slightly rough texture.",
+    "flowerDescription": "Small blue-violet flowers open in rings along slender spikes that branch near the top.",
+    "habitatDescription": "Most often seen in damp meadows, ditches, wet roadsides, and wet prairie openings.",
+    "notes": "The spiky branching pattern makes it easy to separate from broad domed composites nearby.",
+    "similarSpeciesIds": [
+      "great-blue-lobelia",
+      "wild-bergamot"
+    ],
+    "synonyms": [],
+    "images": [
+      {
+        "id": "blue-vervain-hero",
+        "slot": "hero",
+        "assetKey": "blue-vervain-usfws-hollerich",
+        "url": "https://www.fws.gov/sites/default/files/images/2004-07/15101.jpg",
+        "originalUrl": "https://www.fws.gov/media/blue-vervain-neal-smith-national-wildlife-refuge",
+        "photographer": "Sara Hollerich/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Blue vervain photographed at Neal Smith National Wildlife Refuge."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "obedient-plant",
+    "commonName": "Obedient Plant",
+    "scientificName": "Physostegia virginiana",
+    "family": "Lamiaceae",
+    "genus": "Physostegia",
+    "species": "virginiana",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [
+      "USFWS_LIBRARY"
+    ],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "streambank",
+      "floodplain",
+      "wetland edge"
+    ],
+    "flowerColors": [
+      "pink",
+      "purple",
+      "white"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "square",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 48
+    },
+    "identificationDescription": "A straight spike of snapdragon-like flowers and mint-family stems identify this prairie and wet-meadow perennial.",
+    "leafDescription": "Leaves are opposite, narrow, and toothed, arranged along a sturdy square stem.",
+    "flowerDescription": "Flowers are tubular and snapdragon-like, arranged in neat rows along an upright spike.",
+    "habitatDescription": "Grows in moist prairie, low meadows, and alluvial ground where the soil stays moderately rich and open.",
+    "notes": "The common name comes from the way individual flowers can stay bent briefly after being moved.",
+    "similarSpeciesIds": [
+      "wild-bergamot",
+      "blue-vervain"
+    ],
+    "synonyms": [
+      {
+        "term": "false dragonhead",
+        "kind": "common"
+      }
+    ],
+    "images": [
+      {
+        "id": "obedient-plant-hero",
+        "slot": "hero",
+        "assetKey": "obedient-plant-usfws-lamont",
+        "url": "https://www.fws.gov/sites/default/files/2022-09/Obedient%20Plant%20j.jpeg",
+        "originalUrl": "https://www.fws.gov/media/obedient-plant-physostegia-virginiana",
+        "photographer": "Scott Lamont/USFWS",
+        "source": "USFWS_LIBRARY",
+        "license": "PUBLIC_DOMAIN",
+        "licenseStatus": "verified",
+        "commercialUseReviewed": true,
+        "attributionRequired": true,
+        "caption": "Obedient plant with pink-purple flowers arranged along an upright spike."
+      }
+    ]
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "cup-plant",
+    "commonName": "Cup Plant",
+    "scientificName": "Silphium perfoliatum",
+    "family": "Asteraceae",
+    "genus": "Silphium",
+    "species": "perfoliatum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "floodplain",
+      "roadside"
+    ],
+    "flowerColors": [
+      "yellow"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "ovate",
+    "leafMargin": "serrate",
+    "stemType": "clumping",
+    "heightRangeInches": {
+      "min": 60,
+      "max": 108
+    },
+    "identificationDescription": "Huge opposite leaves fused around the stem create water-holding cups beneath the tall yellow flower heads.",
+    "leafDescription": "Leaves are broad, rough, and joined at the base so that rainwater collects around the stem.",
+    "flowerDescription": "Bright yellow sunflower-like heads appear on many branches near the top of the towering plant.",
+    "habitatDescription": "Most often rooted in moist prairie, floodplain openings, and rich low meadows.",
+    "notes": "The leaf cup is the fastest field clue and often attracts insects or tiny frogs after rain.",
+    "similarSpeciesIds": [
+      "prairie-dock",
+      "compass-plant"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "compass-plant",
+    "commonName": "Compass Plant",
+    "scientificName": "Silphium laciniatum",
+    "family": "Asteraceae",
+    "genus": "Silphium",
+    "species": "laciniatum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "prairie",
+      "savanna",
+      "roadside",
+      "dry field"
+    ],
+    "flowerColors": [
+      "yellow"
+    ],
+    "bloomMonths": [
+      "July",
+      "August"
+    ],
+    "leafArrangement": "rosette",
+    "leafShape": "lobed",
+    "leafMargin": "lobed",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 60,
+      "max": 120
+    },
+    "identificationDescription": "Deeply lobed basal leaves and a towering coarse stalk with yellow heads make this a signature tallgrass species.",
+    "leafDescription": "Basal leaves are huge, deeply cut, and often held in a north-south orientation in exposed prairie settings.",
+    "flowerDescription": "Yellow sunflower-like heads bloom along the upper stalk on short lateral branches.",
+    "habitatDescription": "Common in open prairie and other full-sun upland remnants with deep, well-drained soil.",
+    "notes": "Even out of flower, the giant lobed basal leaves make this plant easy to call in the field.",
+    "similarSpeciesIds": [
+      "cup-plant",
+      "prairie-dock"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "rattlesnake-master",
+    "commonName": "Rattlesnake Master",
+    "scientificName": "Eryngium yuccifolium",
+    "family": "Apiaceae",
+    "genus": "Eryngium",
+    "species": "yuccifolium",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "prairie",
+      "savanna",
+      "glade",
+      "roadside"
+    ],
+    "flowerColors": [
+      "white",
+      "green"
+    ],
+    "bloomMonths": [
+      "July",
+      "August"
+    ],
+    "leafArrangement": "basal",
+    "leafShape": "linear",
+    "leafMargin": "entire",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 54
+    },
+    "identificationDescription": "Yucca-like leaves and round bristly white flower heads give this prairie plant an unusual, almost desert look.",
+    "leafDescription": "Leaves are long, narrow, and parallel-sided with fibrous-looking edges and a strong vertical stance.",
+    "flowerDescription": "The flower heads are spherical and pale, made of many tiny florets with spiny bracts.",
+    "habitatDescription": "Best known from sunny prairie and open limestone or gravelly sites with little shade.",
+    "notes": "It is one of the easiest prairie plants to identify from foliage alone before flowering.",
+    "similarSpeciesIds": [
+      "culvers-root",
+      "prairie-blazingstar"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "culvers-root",
+    "commonName": "Culver's Root",
+    "scientificName": "Veronicastrum virginicum",
+    "family": "Plantaginaceae",
+    "genus": "Veronicastrum",
+    "species": "virginicum",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "savanna",
+      "roadside"
+    ],
+    "flowerColors": [
+      "white"
+    ],
+    "bloomMonths": [
+      "July",
+      "August"
+    ],
+    "leafArrangement": "whorled",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 36,
+      "max": 72
+    },
+    "identificationDescription": "Tall spires of narrow white flower spikes rise above whorled leaves in midsummer prairie and meadow habitats.",
+    "leafDescription": "Leaves are arranged in noticeable whorls and are narrow, toothed, and pointed.",
+    "flowerDescription": "Many small white flowers line several tapering spikes that create a chandelier-like top.",
+    "habitatDescription": "Most common in moist prairie, low meadows, and sunny openings with good soil moisture but not standing water.",
+    "notes": "The whorled leaves plus narrow white spikes separate it quickly from asters and bonesets.",
+    "similarSpeciesIds": [
+      "rattlesnake-master",
+      "joe-pye-weed"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "ironweed",
+    "commonName": "Ironweed",
+    "scientificName": "Vernonia fasciculata",
+    "family": "Asteraceae",
+    "genus": "Vernonia",
+    "species": "fasciculata",
+    "plantType": "wildflower",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "wet prairie",
+      "meadow",
+      "wetland edge",
+      "floodplain"
+    ],
+    "flowerColors": [
+      "purple"
+    ],
+    "bloomMonths": [
+      "July",
+      "August",
+      "September"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "lanceolate",
+    "leafMargin": "serrate",
+    "stemType": "erect",
+    "heightRangeInches": {
+      "min": 36,
+      "max": 72
+    },
+    "identificationDescription": "Tall coarse stems topped with deep purple fuzzy flower clusters make ironweed a dramatic late-summer wetland plant.",
+    "leafDescription": "Leaves are narrow, long, and strongly pointed with obvious teeth and a firm texture.",
+    "flowerDescription": "Clusters of rich purple flower heads gather at the top of the plant without any petal-like rays.",
+    "habitatDescription": "Most often seen in moist prairies, wet meadows, and open low ground that stays fairly sunny.",
+    "notes": "The color is much darker and richer than most asters, and the stems keep a very upright habit.",
+    "similarSpeciesIds": [
+      "joe-pye-weed",
+      "prairie-blazingstar"
+    ],
+    "synonyms": [],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "red-osier-dogwood",
+    "commonName": "Red Osier Dogwood",
+    "scientificName": "Cornus sericea",
+    "family": "Cornaceae",
+    "genus": "Cornus",
+    "species": "sericea",
+    "plantType": "shrub",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "wetland edge",
+      "streambank",
+      "floodplain",
+      "marsh",
+      "roadside"
+    ],
+    "flowerColors": [
+      "white"
+    ],
+    "bloomMonths": [
+      "May",
+      "June"
+    ],
+    "leafArrangement": "opposite",
+    "leafShape": "ovate",
+    "leafMargin": "entire",
+    "stemType": "woody",
+    "heightRangeInches": {
+      "min": 48,
+      "max": 120
+    },
+    "identificationDescription": "A wetland shrub with opposite leaves, flat white flower clusters, and striking red stems, especially visible outside bloom.",
+    "leafDescription": "Leaves are opposite, oval, and smooth-edged with the characteristic arcing dogwood veins.",
+    "flowerDescription": "Small white flowers gather into flat-topped clusters that later mature into pale berries.",
+    "habitatDescription": "Most often found on wet ground, especially along streambanks, slough edges, and low shrubby thickets.",
+    "notes": "Even in winter the red twigs make this species easy to recognize, so it extends the guide beyond flowering season.",
+    "similarSpeciesIds": [
+      "virginia-creeper"
+    ],
+    "synonyms": [
+      {
+        "term": "redtwig dogwood",
+        "kind": "common"
+      }
+    ],
+    "images": []
+  },
+  {
+    "factSources": [
+      "ILLINOIS_WILDFLOWERS",
+      "USDA_PLANTS"
+    ],
+    "factSourceNotes": "Referenced sources support factual verification only. Plant descriptions in this app are original manual paraphrases and should not be treated as copied source text.",
+    "factSummaryMethod": "manual_paraphrase",
+    "lastVerified": "2026-05-06",
+    "id": "virginia-creeper",
+    "commonName": "Virginia Creeper",
+    "scientificName": "Parthenocissus quinquefolia",
+    "family": "Vitaceae",
+    "genus": "Parthenocissus",
+    "species": "quinquefolia",
+    "plantType": "vine",
+    "nativeStatus": "native",
+    "imageSources": [],
+    "habitats": [
+      "woodland",
+      "forest",
+      "savanna",
+      "roadside",
+      "disturbed area"
+    ],
+    "flowerColors": [
+      "green"
+    ],
+    "bloomMonths": [
+      "June",
+      "July"
+    ],
+    "leafArrangement": "alternate",
+    "leafShape": "palmate",
+    "leafMargin": "serrate",
+    "stemType": "vining",
+    "heightRangeInches": {
+      "min": 24,
+      "max": 480
+    },
+    "identificationDescription": "A vigorous climbing vine with five-part leaves and adhesive tendrils that allow it to cover trees, fences, and walls.",
+    "leafDescription": "Leaves are palmately compound with five toothed leaflets radiating from one point.",
+    "flowerDescription": "Flowers are small and greenish, later giving way to blue berries on red stalks.",
+    "habitatDescription": "Occurs in woods, hedgerows, disturbed ground, and many urban edges where it can climb or sprawl.",
+    "notes": "The five leaflets are the quickest separation from poison ivy, which usually has three.",
+    "similarSpeciesIds": [
+      "red-osier-dogwood"
+    ],
+    "synonyms": [
+      {
+        "term": "woodbine",
+        "kind": "regional"
+      }
+    ],
+    "images": []
+  }
+]

@@ -4,15 +4,19 @@ import type {
   FactSourceName,
   FactSummaryMethod,
   HeightRangeInches,
-  ReviewedImageCandidate,
   ImageSourceName,
   Plant,
+  PlantType,
+  ReviewedImageCandidate,
 } from '@/types/plant';
+import { formatBloomWindow as formatBloomWindowFromMonths } from '@/utils/months';
 
 const factSourceLabels: Record<FactSourceName, string> = {
-  USDA_PLANTS: 'USDA PLANTS',
+  USDA_PLANTS: 'USDA PLANTS Database',
   ILLINOIS_WILDFLOWERS: 'Illinois Wildflowers',
-  INATURALIST: 'iNaturalist',
+  US_FOREST_SERVICE: 'U.S. Forest Service',
+  ILLINOIS_EXTENSION: 'Illinois Extension',
+  INATURALIST_METADATA: 'iNaturalist metadata',
 };
 
 const imageSourceLabels: Record<ImageSourceName, string> = {
@@ -27,8 +31,20 @@ const factSummaryLabels: Record<FactSummaryMethod, string> = {
   manual_paraphrase: 'Original manual paraphrase',
 };
 
-export function formatPlantTitle(plant: Plant) {
+const plantTypeLabels: Record<PlantType, string> = {
+  wildflower: 'Wildflower',
+  shrub: 'Shrub',
+  vine: 'Vine',
+  fern: 'Fern',
+  tree: 'Tree',
+};
+
+export function formatPlantTitle(plant: Pick<Plant, 'commonName' | 'scientificName'>) {
   return `${plant.commonName} (${plant.scientificName})`;
+}
+
+export function formatPlantType(plantType: PlantType) {
+  return plantTypeLabels[plantType];
 }
 
 export function formatTraitList(values: string[]) {
@@ -57,6 +73,10 @@ export function formatImageSourceList(values: ImageSourceName[]) {
 
 export function formatFactSummaryMethod(method: FactSummaryMethod) {
   return factSummaryLabels[method];
+}
+
+export function formatBloomWindow(values: Plant['bloomMonths']) {
+  return formatBloomWindowFromMonths(values);
 }
 
 export function getReviewedImageCandidatesForPlant(plantId: string): ReviewedImageCandidate[] {

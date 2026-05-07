@@ -9,3 +9,5 @@ yarn-debug.*
 yarn-error.*
 *.log
 *-portable.zip
+
+.claude/

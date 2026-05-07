@@ -1,5 +1,5 @@
-import { BrowsePlantsScreen } from '@/screens/BrowsePlantsScreen';
+import { Redirect } from 'expo-router';
 
 export default function PlantsIndexRoute() {
-  return <BrowsePlantsScreen />;
+  return <Redirect href="/search" />;
 }

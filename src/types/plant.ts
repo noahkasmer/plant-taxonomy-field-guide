@@ -1,8 +1,13 @@
 export type NativeStatus = 'native' | 'introduced' | 'naturalized' | 'unknown';
+export type PlantType = 'wildflower' | 'shrub' | 'vine' | 'fern' | 'tree';
+export type ThemePreference = 'system' | 'light' | 'dark';
+
 export type FactSourceName =
   | 'USDA_PLANTS'
   | 'ILLINOIS_WILDFLOWERS'
-  | 'INATURALIST';
+  | 'US_FOREST_SERVICE'
+  | 'ILLINOIS_EXTENSION'
+  | 'INATURALIST_METADATA';
 
 export type ImageSourceName =
   | 'USFWS_LIBRARY'
@@ -22,8 +27,6 @@ export type ImageLicense =
   | 'CC_BY_SA'
   | 'UNKNOWN';
 
-// These unions are intentionally practical rather than exhaustive.
-// They cover common field-guide traits for Illinois wildflowers.
 export type Habitat =
   | 'prairie'
   | 'wet prairie'
@@ -40,7 +43,8 @@ export type Habitat =
   | 'glade'
   | 'roadside'
   | 'disturbed area'
-  | 'dry field';
+  | 'dry field'
+  | 'wetland edge';
 
 export type FlowerColor =
   | 'white'
@@ -86,7 +90,8 @@ export type LeafShape =
   | 'spatulate'
   | 'lobed'
   | 'palmate'
-  | 'compound';
+  | 'compound'
+  | 'arrowhead';
 
 export type LeafMargin =
   | 'entire'
@@ -105,14 +110,26 @@ export type StemType =
   | 'square'
   | 'hairy'
   | 'creeping'
-  | 'vining';
+  | 'vining'
+  | 'woody';
+
+export type ImageSlot = 'hero' | 'detail' | 'habitat';
+export type PlantSynonymKind = 'common' | 'scientific' | 'regional';
+export type TagCategory = 'flower_color' | 'field_cue' | 'habitat' | 'season';
 
 export type HeightRangeInches = {
   min: number;
   max: number;
 };
 
+export type PlantSynonym = {
+  term: string;
+  kind: PlantSynonymKind;
+};
+
 export type PlantImage = {
+  id: string;
+  slot: ImageSlot;
   assetKey?: string;
   url: string;
   originalUrl: string;
@@ -129,6 +146,7 @@ export type ReviewedImageCandidate = {
   id: string;
   plantId: string;
   assetKey?: string;
+  slot: ImageSlot;
   source: ImageSourceName;
   sourcePageUrl: string;
   photographer: string;
@@ -152,6 +170,7 @@ export type Plant = {
   family: string;
   genus: string;
   species: string;
+  plantType: PlantType;
   nativeStatus: NativeStatus;
   factSources: FactSourceName[];
   factSourceNotes?: string;
@@ -162,14 +181,104 @@ export type Plant = {
   bloomSeason: string;
   flowerColors: FlowerColor[];
   bloomMonths: BloomMonth[];
-  // Use the dominant field-guide trait rather than every botanical variation.
   leafArrangement: LeafArrangement;
   leafShape: LeafShape;
   leafMargin: LeafMargin;
-  // Keep this to the most useful stem cue for simple offline filtering.
   stemType: StemType;
   heightRangeInches: HeightRangeInches;
-  identifyingFeatures: string[];
+  identificationDescription: string;
+  leafDescription: string;
+  flowerDescription: string;
+  habitatDescription: string;
   notes: string;
+  similarSpeciesIds: string[];
+  synonyms: PlantSynonym[];
   images: PlantImage[];
+};
+
+export type LicenseCatalogEntry = {
+  id: ImageLicense;
+  label: string;
+  sourceUrl: string;
+  attributionRequired: boolean;
+  commercialSafeDefault: boolean;
+  usageNotes: string;
+};
+
+export type SourceCatalogEntry = {
+  id: FactSourceName | ImageSourceName;
+  label: string;
+  sourceType: 'fact' | 'image';
+  baseUrl: string;
+  policyUrl: string;
+  usageNotes: string;
+  preferredForCommercialApp: boolean;
+};
+
+export type PlantSummary = {
+  id: string;
+  commonName: string;
+  scientificName: string;
+  family: string;
+  plantType: PlantType;
+  nativeStatus: NativeStatus;
+  habitats: Habitat[];
+  flowerColors: FlowerColor[];
+  bloomMonths: BloomMonth[];
+  offlineReady: boolean;
+  offlineImageCount: number;
+  identificationDescription: string;
+  synonyms: PlantSynonym[];
+  heroImage?: PlantImage;
+};
+
+export type PlantDetail = PlantSummary & {
+  genus: string;
+  species: string;
+  leafArrangement: LeafArrangement;
+  leafShape: LeafShape;
+  leafMargin: LeafMargin;
+  stemType: StemType;
+  heightRangeInches: HeightRangeInches;
+  leafDescription: string;
+  flowerDescription: string;
+  habitatDescription: string;
+  notes: string;
+  factSources: FactSourceName[];
+  factSourceNotes?: string;
+  factSummaryMethod: FactSummaryMethod;
+  lastVerified?: string;
+  imageSources: ImageSourceName[];
+  images: PlantImage[];
+  similarSpecies: PlantSummary[];
+};
+
+export type CatalogFilters = {
+  query: string;
+  flowerColors: FlowerColor[];
+  bloomMonths: BloomMonth[];
+  habitats: Habitat[];
+  plantTypes: PlantType[];
+  nativeStatuses: NativeStatus[];
+  families: string[];
+};
+
+export type CatalogFilterOptions = {
+  flowerColors: FlowerColor[];
+  bloomMonths: BloomMonth[];
+  habitats: Habitat[];
+  plantTypes: PlantType[];
+  nativeStatuses: NativeStatus[];
+  families: string[];
+};
+
+export type AppDataStats = {
+  plantCount: number;
+  favoriteCount: number;
+  recentCount: number;
+  reviewedImageCount: number;
+  bundledImageCount: number;
+  lastSeededAt: string;
+  seedVersion: string;
+  databasePath: string;
 };

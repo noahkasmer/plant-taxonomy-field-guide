@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
+import { useAppTheme } from '@/hooks/useAppTheme';
+import tw from '@/theme/tw';
 import type { PlantImage } from '@/types/plant';
 import { getAttributionText } from '@/utils/mediaRights';
 
@@ -8,31 +10,21 @@ type AttributionProps = {
 };
 
 export function Attribution({ image }: AttributionProps) {
+  const { isDark } = useAppTheme();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>License and Attribution</Text>
-      <Text style={styles.text}>{getAttributionText(image)}</Text>
+    <View
+      style={[
+        tw`rounded-2xl p-3`,
+        isDark ? tw`bg-pine` : tw`bg-lake`,
+      ]}
+    >
+      <Text style={[tw`text-xs font-bold uppercase tracking-wide`, isDark ? tw`text-mist` : tw`text-fern`]}>
+        License and attribution
+      </Text>
+      <Text style={[tw`mt-1 text-sm leading-5`, isDark ? tw`text-sand` : tw`text-bark`]}>
+        {getAttributionText(image)}
+      </Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#EEF2E8',
-    borderRadius: 12,
-    gap: 4,
-    padding: 12,
-  },
-  label: {
-    color: '#39523E',
-    fontSize: 12,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-    textTransform: 'uppercase',
-  },
-  text: {
-    color: '#4A5B4D',
-    fontSize: 13,
-    lineHeight: 19,
-  },
-});

@@ -1,259 +1,314 @@
-import { Stack, useLocalSearchParams } from 'expo-router';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useMemo } from 'react';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
 
 import { Attribution } from '@/components/Attribution';
+import { EmptyState } from '@/components/EmptyState';
+import { OfflineBadge } from '@/components/OfflineBadge';
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { usePlantById } from '@/hooks/usePlantRepository';
-import { getBundledPlantImageSource } from '@/utils/imageAssets';
-import { canUseImageInCommercialApp, isPreferredCommercialImageSource } from '@/utils/mediaRights';
+import { SectionHeading } from '@/components/SectionHeading';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { toggleFavoriteAsync, recordPlantViewAsync } from '@/services/userActions';
+import { useAppStore } from '@/store/appStore';
+import tw from '@/theme/tw';
+import { canUseImageInCommercialApp } from '@/utils/mediaRights';
 import {
-  formatFactSummaryMethod,
+  formatBloomWindow,
   formatFactSourceList,
+  formatFactSummaryMethod,
   formatHeightRange,
-  formatImageSourceName,
   formatImageSourceList,
+  formatPlantType,
   formatTraitList,
-  getReviewedImageCandidatesForPlant,
 } from '@/utils/plants';
+import { getBundledPlantImageSource } from '@/utils/imageAssets';
+
+const imageSlots = ['hero', 'detail', 'habitat'] as const;
 
 export function PlantDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const router = useRouter();
+  const { isDark } = useAppTheme();
   const plantId = Array.isArray(id) ? id[0] : id;
-  const { plant, isLoading, error } = usePlantById(plantId);
+  const plant = useAppStore((state) =>
+    plantId ? state.plantDetailsById[plantId] : undefined,
+  );
+  const favoriteIds = useAppStore((state) => state.favoriteIds);
+  const isFavorite = plantId ? favoriteIds.includes(plantId) : false;
 
-  if (isLoading) {
-    return (
-      <ScreenContainer>
-        <Stack.Screen options={{ title: 'Plant Details' }} />
-        <View style={styles.section}>
-          <Text style={styles.title}>Loading plant...</Text>
-          <Text style={styles.body}>Reading the local SQLite field-guide record.</Text>
-        </View>
-      </ScreenContainer>
-    );
-  }
+  useEffect(() => {
+    if (!plantId) {
+      return;
+    }
 
-  if (error) {
-    return (
-      <ScreenContainer>
-        <Stack.Screen options={{ title: 'Plant Details' }} />
-        <View style={styles.section}>
-          <Text style={styles.title}>Unable to load plant</Text>
-          <Text style={styles.body}>{error.message}</Text>
-        </View>
-      </ScreenContainer>
-    );
-  }
+    void recordPlantViewAsync(plantId);
+  }, [plantId]);
+
+  const usableImages = useMemo(
+    () => plant?.images.filter((image) => canUseImageInCommercialApp(image)) ?? [],
+    [plant],
+  );
 
   if (!plant) {
     return (
       <ScreenContainer>
         <Stack.Screen options={{ title: 'Plant Details' }} />
-        <View style={styles.section}>
-          <Text style={styles.title}>Plant not found</Text>
-          <Text style={styles.body}>This local record is missing from the starter dataset.</Text>
-        </View>
+        <EmptyState
+          title="Plant not found"
+          body="This local record is missing from the current seeded catalog."
+        />
       </ScreenContainer>
     );
   }
 
-  const approvedImages = plant.images.filter((image) => canUseImageInCommercialApp(image));
-  const bundledImages = approvedImages
-    .map((image) => ({
-      image,
-      source: getBundledPlantImageSource(image),
-    }))
-    .filter(
-      (entry): entry is { image: (typeof approvedImages)[number]; source: NonNullable<typeof entry.source> } =>
-        entry.source !== null,
-    );
-  const reviewedCandidates = getReviewedImageCandidatesForPlant(plant.id);
-  const preferredImagePolicy =
-    plant.imageSources.length > 0 && plant.images.some((image) => isPreferredCommercialImageSource(image))
-      ? 'Government public-domain source on file.'
-      : 'Government public-domain sources are preferred; Wikimedia Commons is a reviewed fallback only.';
-
   return (
     <ScreenContainer>
-      <Stack.Screen options={{ title: plant.commonName }} />
-      <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.section}>
-          <Text style={styles.title}>{plant.commonName}</Text>
-          <Text style={styles.scientificName}>{plant.scientificName}</Text>
-          <Text style={styles.meta}>
-            {plant.family} - {plant.nativeStatus} - verified {plant.lastVerified ?? 'pending'}
+      <Stack.Screen
+        options={{
+          title: plant.commonName,
+        }}
+      />
+      <ScrollView contentContainerStyle={tw`pb-12`}>
+        <View
+          style={[
+            tw`rounded-card border p-5`,
+            isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+          ]}
+        >
+          <View style={tw`flex-row items-start justify-between gap-3`}>
+            <View style={tw`flex-1`}>
+              <Text style={[tw`text-3xl font-bold`, isDark ? tw`text-sand` : tw`text-moss`]}>
+                {plant.commonName}
+              </Text>
+              <Text style={[tw`mt-2 text-base italic`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                {plant.scientificName}
+              </Text>
+              <Text style={[tw`mt-3 text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
+                {plant.family} • {formatPlantType(plant.plantType)} • {plant.nativeStatus}
+              </Text>
+            </View>
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => void toggleFavoriteAsync(plant.id)}
+              style={({ pressed }) => [
+                tw`rounded-full px-3 py-3`,
+                isFavorite ? tw`bg-gold` : isDark ? tw`bg-night` : tw`bg-mist`,
+                pressed && tw`opacity-80`,
+              ]}
+            >
+              <MaterialCommunityIcons
+                name={isFavorite ? 'bookmark' : 'bookmark-outline'}
+                size={22}
+                color={isFavorite ? '#102019' : isDark ? '#F3F0E8' : '#1F3D2F'}
+              />
+            </Pressable>
+          </View>
+
+          <View style={tw`mt-4`}>
+            <OfflineBadge bundledImageCount={plant.offlineImageCount} />
+          </View>
+
+          <Text style={[tw`mt-4 text-base leading-7`, isDark ? tw`text-stone` : tw`text-bark`]}>
+            {plant.identificationDescription}
           </Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Media</Text>
-          {bundledImages.length > 0 ? (
-            bundledImages.map(({ image, source }) => (
+        <View style={tw`mt-6`}>
+          <SectionHeading
+            title="Photos"
+            subtitle="Only reviewed locally bundled images are shown in the live app."
+          />
+          {imageSlots.map((slot) => {
+            const image = usableImages.find((entry) => entry.slot === slot);
+            const source = image ? getBundledPlantImageSource(image) : null;
+
+            return (
               <View
-                key={`${plant.id}-${image.originalUrl}`}
-                style={styles.mediaBlock}
+                key={slot}
+                style={[
+                  tw`mb-4 overflow-hidden rounded-card border`,
+                  isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+                ]}
               >
-                <Image
-                  source={source}
-                  style={styles.image}
-                  resizeMode="cover"
-                />
-                {image.caption ? <Text style={styles.caption}>{image.caption}</Text> : null}
-                <Attribution image={image} />
+                {image && source ? (
+                  <>
+                    <Image
+                      source={source}
+                      contentFit="cover"
+                      cachePolicy="memory-disk"
+                      style={tw`h-56 w-full`}
+                    />
+                    <View style={tw`gap-3 p-4`}>
+                      <Text style={[tw`text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
+                        {slot} image
+                      </Text>
+                      {image.caption ? (
+                        <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                          {image.caption}
+                        </Text>
+                      ) : null}
+                      <Attribution image={image} />
+                    </View>
+                  </>
+                ) : (
+                  <View style={tw`gap-3 p-5`}>
+                    <Text style={[tw`text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
+                      {slot} image
+                    </Text>
+                    <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                      No locally bundled reviewed image is available for this slot yet.
+                    </Text>
+                  </View>
+                )}
               </View>
-            ))
-          ) : (
-            <View style={styles.placeholder}>
-              <Text style={styles.placeholderTitle}>No approved image bundled yet</Text>
-              <Text style={styles.body}>
-                This build only shows locally bundled images that are commercially reviewed and conservatively safe
-                for a paid app.
+            );
+          })}
+        </View>
+
+        <View style={tw`mt-2 gap-4`}>
+          <View
+            style={[
+              tw`rounded-card border p-4`,
+              isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+            ]}
+          >
+            <SectionHeading title="Identification" />
+            <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              {plant.identificationDescription}
+            </Text>
+            <Text style={[tw`mt-4 text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
+              Leaves
+            </Text>
+            <Text style={[tw`mt-1 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              {plant.leafDescription}
+            </Text>
+            <Text style={[tw`mt-4 text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
+              Flowers
+            </Text>
+            <Text style={[tw`mt-1 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              {plant.flowerDescription}
+            </Text>
+          </View>
+
+          <View
+            style={[
+              tw`rounded-card border p-4`,
+              isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+            ]}
+          >
+            <SectionHeading title="Habitat and bloom" />
+            <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              {plant.habitatDescription}
+            </Text>
+            <Text style={[tw`mt-4 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Habitats: {formatTraitList(plant.habitats)}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Bloom time: {formatBloomWindow(plant.bloomMonths)}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Height: {formatHeightRange(plant.heightRangeInches)}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Field note: {plant.notes}
+            </Text>
+          </View>
+
+          <View
+            style={[
+              tw`rounded-card border p-4`,
+              isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+            ]}
+          >
+            <SectionHeading title="Field traits" />
+            <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Flower colors: {formatTraitList(plant.flowerColors)}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Leaf arrangement: {plant.leafArrangement}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Leaf shape: {plant.leafShape}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Leaf margin: {plant.leafMargin}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Stem type: {plant.stemType}
+            </Text>
+          </View>
+
+          <View
+            style={[
+              tw`rounded-card border p-4`,
+              isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+            ]}
+          >
+            <SectionHeading title="Similar species" />
+            {plant.similarSpecies.length > 0 ? (
+              plant.similarSpecies.map((candidate) => (
+                <Pressable
+                  key={candidate.id}
+                  onPress={() => router.push(`/plants/${candidate.id}`)}
+                  style={({ pressed }) => [
+                    tw`mb-3 rounded-2xl border px-4 py-3`,
+                    isDark ? tw`border-stone bg-night` : tw`border-stone bg-sand`,
+                    pressed && tw`opacity-80`,
+                  ]}
+                >
+                  <Text style={[tw`text-base font-bold`, isDark ? tw`text-sand` : tw`text-moss`]}>
+                    {candidate.commonName}
+                  </Text>
+                  <Text style={[tw`mt-1 text-sm italic`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                    {candidate.scientificName}
+                  </Text>
+                </Pressable>
+              ))
+            ) : (
+              <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                Similar-species links have not been curated for this record yet.
               </Text>
-              {approvedImages.length > 0 ? (
-                <Text style={styles.body}>A reviewed public-domain source is on file, but the local asset is not bundled yet.</Text>
-              ) : null}
-            </View>
-          )}
-        </View>
+            )}
+          </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Field Traits</Text>
-          <Text style={styles.body}>Habitats: {formatTraitList(plant.habitats)}</Text>
-          <Text style={styles.body}>Bloom season: {plant.bloomSeason}</Text>
-          <Text style={styles.body}>Flower colors: {formatTraitList(plant.flowerColors)}</Text>
-          <Text style={styles.body}>Bloom months: {formatTraitList(plant.bloomMonths)}</Text>
-          <Text style={styles.body}>
-            Leaf: {plant.leafArrangement}, {plant.leafShape}, {plant.leafMargin}
-          </Text>
-          <Text style={styles.body}>Stem: {plant.stemType}</Text>
-          <Text style={styles.body}>Height: {formatHeightRange(plant.heightRangeInches)}</Text>
-          <Text style={styles.body}>Identifying features:</Text>
-          {plant.identifyingFeatures.map((feature) => (
-            <Text key={feature} style={styles.bullet}>• {feature}</Text>
-          ))}
-          <Text style={styles.body}>Notes: {plant.notes}</Text>
-        </View>
+          <View
+            style={[
+              tw`rounded-card border p-4`,
+              isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+            ]}
+          >
+            <SectionHeading title="Range map" />
+            <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Illinois range maps are planned for a future release. This MVP uses habitat and family data instead of a live map layer.
+            </Text>
+          </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Fact Provenance</Text>
-          <Text style={styles.body}>Referenced fact sources: {formatFactSourceList(plant.factSources)}</Text>
-          <Text style={styles.body}>Summary method: {formatFactSummaryMethod(plant.factSummaryMethod)}</Text>
-          <Text style={styles.body}>Last verified: {plant.lastVerified ?? 'pending'}</Text>
-          {plant.factSourceNotes ? <Text style={styles.body}>Source notes: {plant.factSourceNotes}</Text> : null}
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Media Provenance</Text>
-          <Text style={styles.body}>
-            Preferred image policy: {preferredImagePolicy}
-          </Text>
-          <Text style={styles.body}>
-            Image sources: {plant.imageSources.length > 0 ? formatImageSourceList(plant.imageSources) : 'none bundled'}
-          </Text>
-          <Text style={styles.body}>
-            The live app only renders reviewed public-domain or CC0 images, with U.S. government public-domain sources
-            preferred over other public repositories. TODO(image-licensing): connect future imports to a repeatable
-            review queue before new assets are bundled.
-          </Text>
-          <Text style={styles.body}>Reviewed bundle candidates: {reviewedCandidates.length}</Text>
-          <Text style={styles.body}>Locally bundled images: {bundledImages.length}</Text>
-          {reviewedCandidates.map((candidate) => (
-            <View key={candidate.id} style={styles.candidate}>
-              <Text style={styles.body}>
-                Candidate: {formatImageSourceName(candidate.source)} - {candidate.license} - {candidate.reviewStatus}
+          <View
+            style={[
+              tw`rounded-card border p-4`,
+              isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+            ]}
+          >
+            <SectionHeading title="Sources and attribution" />
+            <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Referenced fact sources: {formatFactSourceList(plant.factSources)}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Summary method: {formatFactSummaryMethod(plant.factSummaryMethod)}
+            </Text>
+            <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+              Image source families: {plant.imageSources.length > 0 ? formatImageSourceList(plant.imageSources) : 'No reviewed image sources recorded yet'}
+            </Text>
+            {plant.factSourceNotes ? (
+              <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                Notes: {plant.factSourceNotes}
               </Text>
-              {candidate.assetKey ? <Text style={styles.body}>Asset key: {candidate.assetKey}</Text> : null}
-              <Text style={styles.body}>Credit line: {candidate.creditLine}</Text>
-              {candidate.caption ? <Text style={styles.body}>Caption: {candidate.caption}</Text> : null}
-              <Text style={styles.body}>Reviewed: {candidate.reviewedOn}</Text>
-            </View>
-          ))}
+            ) : null}
+          </View>
         </View>
       </ScrollView>
     </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  content: {
-    gap: 16,
-    paddingBottom: 32,
-  },
-  section: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#D7DED0',
-    borderRadius: 18,
-    borderWidth: 1,
-    gap: 10,
-    padding: 18,
-  },
-  title: {
-    color: '#1F3D2F',
-    fontSize: 28,
-    fontWeight: '700',
-    lineHeight: 34,
-  },
-  scientificName: {
-    color: '#4A5B4D',
-    fontSize: 18,
-    fontStyle: 'italic',
-  },
-  meta: {
-    color: '#5E6F60',
-    fontSize: 13,
-    fontWeight: '600',
-    textTransform: 'uppercase',
-  },
-  sectionTitle: {
-    color: '#1F3D2F',
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  body: {
-    color: '#4A5B4D',
-    fontSize: 15,
-    lineHeight: 22,
-  },
-  mediaBlock: {
-    gap: 10,
-  },
-  bullet: {
-    color: '#4A5B4D',
-    fontSize: 15,
-    lineHeight: 22,
-    paddingLeft: 8,
-  },
-  image: {
-    backgroundColor: '#DCE8D8',
-    borderRadius: 14,
-    height: 220,
-    width: '100%',
-  },
-  caption: {
-    color: '#4A5B4D',
-    fontSize: 14,
-    lineHeight: 20,
-  },
-  candidate: {
-    borderTopColor: '#D7DED0',
-    borderTopWidth: 1,
-    gap: 6,
-    marginTop: 4,
-    paddingTop: 12,
-  },
-  placeholder: {
-    alignItems: 'center',
-    backgroundColor: '#EEF2E8',
-    borderRadius: 14,
-    gap: 8,
-    minHeight: 180,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  placeholderTitle: {
-    color: '#1F3D2F',
-    fontSize: 18,
-    fontWeight: '700',
-    textAlign: 'center',
-  },
-});
