@@ -1,4 +1,5 @@
 import * as SQLite from 'expo-sqlite';
+import { Platform } from 'react-native';
 
 import { plants as starterPlants } from '@/data/plants';
 import type { HeightRangeInches, Plant } from '@/types/plant';
@@ -7,6 +8,7 @@ const DATABASE_NAME = 'illinois-plant-field-guide.db';
 const SCHEMA_VERSION = 1;
 
 let databasePromise: Promise<SQLite.SQLiteDatabase> | null = null;
+let initializedDbPromise: Promise<SQLite.SQLiteDatabase> | null = null;
 
 // TODO(image-licensing): add a media_imports table after the licensing review workflow is finalized.
 type PlantRow = {
@@ -176,93 +178,116 @@ async function createSchema(db: SQLite.SQLiteDatabase) {
 }
 
 async function seedStarterPlants(db: SQLite.SQLiteDatabase) {
-  await db.runAsync('DELETE FROM plants');
+  await db.execAsync('BEGIN TRANSACTION');
+  try {
+    await db.runAsync('DELETE FROM plants');
 
-  await Promise.all(
-    starterPlants.map((plant) =>
-      db.runAsync(
-        `INSERT INTO plants (
-          id,
-          common_name,
-          scientific_name,
-          family,
-          genus,
-          species,
-          native_status,
-          fact_sources_json,
-          fact_source_notes,
-          fact_summary_method,
-          last_verified,
-          image_sources_json,
-          habitats_json,
-          bloom_season,
-          flower_colors_json,
-          bloom_months_json,
-          leaf_arrangement,
-          leaf_shape,
-          leaf_margin,
-          stem_type,
-          height_min_inches,
-          height_max_inches,
-          identifying_features_json,
-          notes,
-          images_json,
-          search_text
-        ) VALUES (
-          $id,
-          $commonName,
-          $scientificName,
-          $family,
-          $genus,
-          $species,
-          $nativeStatus,
-          $factSourcesJson,
-          $factSourceNotes,
-          $factSummaryMethod,
-          $lastVerified,
-          $imageSourcesJson,
-          $habitatsJson,
-          $bloomSeason,
-          $flowerColorsJson,
-          $bloomMonthsJson,
-          $leafArrangement,
-          $leafShape,
-          $leafMargin,
-          $stemType,
-          $heightMinInches,
-          $heightMaxInches,
-          $identifyingFeaturesJson,
-          $notes,
-          $imagesJson,
-          $searchText
-        )`,
-        plantToParams(plant),
+    await Promise.all(
+      starterPlants.map((plant) =>
+        db.runAsync(
+          `INSERT INTO plants (
+            id,
+            common_name,
+            scientific_name,
+            family,
+            genus,
+            species,
+            native_status,
+            fact_sources_json,
+            fact_source_notes,
+            fact_summary_method,
+            last_verified,
+            image_sources_json,
+            habitats_json,
+            bloom_season,
+            flower_colors_json,
+            bloom_months_json,
+            leaf_arrangement,
+            leaf_shape,
+            leaf_margin,
+            stem_type,
+            height_min_inches,
+            height_max_inches,
+            identifying_features_json,
+            notes,
+            images_json,
+            search_text
+          ) VALUES (
+            $id,
+            $commonName,
+            $scientificName,
+            $family,
+            $genus,
+            $species,
+            $nativeStatus,
+            $factSourcesJson,
+            $factSourceNotes,
+            $factSummaryMethod,
+            $lastVerified,
+            $imageSourcesJson,
+            $habitatsJson,
+            $bloomSeason,
+            $flowerColorsJson,
+            $bloomMonthsJson,
+            $leafArrangement,
+            $leafShape,
+            $leafMargin,
+            $stemType,
+            $heightMinInches,
+            $heightMaxInches,
+            $identifyingFeaturesJson,
+            $notes,
+            $imagesJson,
+            $searchText
+          )`,
+          plantToParams(plant),
+        ),
       ),
-    ),
-  );
+    );
 
-  await db.runAsync(
-    `INSERT OR REPLACE INTO app_metadata (key, value) VALUES ('schema_version', $schemaVersion)`,
-    { $schemaVersion: String(SCHEMA_VERSION) },
-  );
+    await db.runAsync(
+      `INSERT OR REPLACE INTO app_metadata (key, value) VALUES ('schema_version', $schemaVersion)`,
+      { $schemaVersion: String(SCHEMA_VERSION) },
+    );
+
+    await db.execAsync('COMMIT');
+  } catch (err) {
+    await db.execAsync('ROLLBACK');
+    throw err;
+  }
 }
 
-export async function initializePlantDatabase() {
-  const db = await getDatabase();
-  await createSchema(db);
+export function initializePlantDatabase(): Promise<SQLite.SQLiteDatabase> {
+  initializedDbPromise ??= (async () => {
+    const db = await getDatabase();
+    await createSchema(db);
 
-  const metadata = await db.getFirstAsync<{ value: string }>(
-    `SELECT value FROM app_metadata WHERE key = 'schema_version'`,
-  );
+    const metadata = await db.getFirstAsync<{ value: string }>(
+      `SELECT value FROM app_metadata WHERE key = 'schema_version'`,
+    );
 
-  if (metadata?.value !== String(SCHEMA_VERSION)) {
-    await seedStarterPlants(db);
-  }
+    if (metadata?.value !== String(SCHEMA_VERSION)) {
+      await seedStarterPlants(db);
+    }
 
-  return db;
+    return db;
+  })();
+
+  return initializedDbPromise;
+}
+
+// On web, SQLite is not available — use the static plant data directly.
+function staticSearch(searchQuery: string): Plant[] {
+  const q = searchQuery.trim().toLowerCase();
+  const filtered = q
+    ? starterPlants.filter((p) => buildSearchText(p).includes(q))
+    : [...starterPlants];
+  return filtered.sort((a, b) => a.commonName.localeCompare(b.commonName));
 }
 
 export async function getPlantsFromDatabase(searchQuery = ''): Promise<Plant[]> {
+  if (Platform.OS === 'web') return staticSearch(searchQuery);
+
   const db = await initializePlantDatabase();
   const normalizedQuery = searchQuery.trim().toLowerCase();
 
@@ -281,6 +306,8 @@ export async function getPlantsFromDatabase(searchQuery = ''): Promise<Plant[]> 
 }
 
 export async function getPlantFromDatabaseById(id: string): Promise<Plant | undefined> {
+  if (Platform.OS === 'web') return starterPlants.find((p) => p.id === id);
+
   const db = await initializePlantDatabase();
   const row = await db.getFirstAsync<PlantRow>(
     `SELECT * FROM plants WHERE id = $id LIMIT 1`,
