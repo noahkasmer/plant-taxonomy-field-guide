@@ -1,10 +1,18 @@
-import type { SQLiteDatabase } from 'expo-sqlite';
+import type { DatabaseHandle } from '@/db/types';
 
 type Migration = {
   version: number;
   name: string;
   sql: string;
 };
+
+function runSqlAsync(
+  db: DatabaseHandle,
+  source: string,
+  ...params: Array<string | number | null>
+) {
+  return db.runAsync(source, params);
+}
 
 export const migrations: Migration[] = [
   {
@@ -214,7 +222,7 @@ export const migrations: Migration[] = [
   },
 ];
 
-async function ensureMigrationsTableAsync(db: SQLiteDatabase) {
+async function ensureMigrationsTableAsync(db: DatabaseHandle) {
   await db.execAsync(`
     CREATE TABLE IF NOT EXISTS schema_migrations (
       version INTEGER PRIMARY KEY NOT NULL,
@@ -224,7 +232,7 @@ async function ensureMigrationsTableAsync(db: SQLiteDatabase) {
   `);
 }
 
-export async function runMigrationsAsync(db: SQLiteDatabase) {
+export async function runMigrationsAsync(db: DatabaseHandle) {
   await ensureMigrationsTableAsync(db);
   const applied = await db.getAllAsync<{ version: number }>(
     'SELECT version FROM schema_migrations ORDER BY version ASC',
@@ -236,9 +244,10 @@ export async function runMigrationsAsync(db: SQLiteDatabase) {
       continue;
     }
 
-    await db.withExclusiveTransactionAsync(async (txn) => {
+    await db.withExclusiveTransactionAsync(async (txn: DatabaseHandle) => {
       await txn.execAsync(migration.sql);
-      await txn.runAsync(
+      await runSqlAsync(
+        txn,
         'INSERT INTO schema_migrations (version, name, applied_at) VALUES (?, ?, ?)',
         migration.version,
         migration.name,

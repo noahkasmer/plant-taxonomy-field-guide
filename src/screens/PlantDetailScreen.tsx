@@ -24,6 +24,12 @@ import {
   formatTraitList,
 } from '@/utils/plants';
 import { getBundledPlantImageSource } from '@/utils/imageAssets';
+import type { PlantImage } from '@/types/plant';
+
+type BundledImageEntry = {
+  image: PlantImage;
+  source: NonNullable<ReturnType<typeof getBundledPlantImageSource>>;
+};
 
 const slotLabels: Record<string, string> = {
   hero: 'Hero',
@@ -52,10 +58,30 @@ export function PlantDetailScreen() {
     void recordPlantViewAsync(plantId);
   }, [plantId]);
 
-  const usableImages = useMemo(
-    () => plant?.images.filter((image) => canUseImageInCommercialApp(image)) ?? [],
+  const bundledUsableImages = useMemo(
+    () =>
+      plant?.images
+        .filter((image) => canUseImageInCommercialApp(image))
+        .map((image) => {
+          const source = getBundledPlantImageSource(image);
+          return source ? { image, source } : null;
+        })
+        .filter((entry): entry is BundledImageEntry => entry !== null) ?? [],
     [plant],
   );
+
+  const showLeafPhotoFallback = useMemo(() => {
+    if (!plant) {
+      return false;
+    }
+
+    const hasLeafImage = bundledUsableImages.some(({ image }) => image.slot === 'leaf');
+    const hasOtherStageImages = bundledUsableImages.some(
+      ({ image }) => image.slot === 'detail' || image.slot === 'fruit',
+    );
+
+    return !hasLeafImage && hasOtherStageImages;
+  }, [bundledUsableImages, plant]);
 
   if (!plant) {
     return (
@@ -126,16 +152,14 @@ export function PlantDetailScreen() {
             title="Photos"
             subtitle="Only reviewed locally bundled images are shown in the live app."
           />
-          {usableImages.filter((img) => getBundledPlantImageSource(img) !== null).length === 0 ? (
+          {bundledUsableImages.length === 0 ? (
             <View style={[tw`rounded-card border p-5`, isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`]}>
               <Text style={[tw`text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
                 No reviewed photos are bundled for this plant yet.
               </Text>
             </View>
           ) : (
-            usableImages.map((image) => {
-              const source = getBundledPlantImageSource(image);
-              if (!source) return null;
+            bundledUsableImages.map(({ image, source }) => {
               return (
                 <View
                   key={image.id}
@@ -165,6 +189,21 @@ export function PlantDetailScreen() {
               );
             })
           )}
+          {showLeafPhotoFallback ? (
+            <View
+              style={[
+                tw`mb-4 rounded-card border border-dashed p-4`,
+                isDark ? tw`border-stone bg-pine` : tw`border-stone bg-white`,
+              ]}
+            >
+              <Text style={[tw`text-xs font-semibold uppercase`, isDark ? tw`text-stone` : tw`text-smoke`]}>
+                Leaf
+              </Text>
+              <Text style={[tw`mt-2 text-sm leading-6`, isDark ? tw`text-stone` : tw`text-bark`]}>
+                No reviewed leaf photo is bundled for this plant yet. Use the leaf description and field traits below for foliage cues.
+              </Text>
+            </View>
+          ) : null}
         </View>
 
         <View style={tw`mt-2 gap-4`}>

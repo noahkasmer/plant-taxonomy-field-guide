@@ -5,7 +5,7 @@ Read this before starting. Update this before pushing.
 ---
 
 ## Last updated
-2026-05-07 - Claude Code
+2026-05-07 - Codex
 
 ---
 
@@ -19,33 +19,40 @@ Read this before starting. Update this before pushing.
 
 ---
 
-## Pending - Codex
+## Completed - Codex
 
-- [ ] Fix db-layer TS errors: `src/db/client.ts`, `src/db/migrations.ts`, `src/storage/plantDatabase.ts`, `src/db/repositories/` (expo-sqlite API mismatches, `identifyingFeatures` missing from Plant type)
-- [ ] Add fallback card in `PlantDetailScreen.tsx` for plants missing a leaf photo (`blue-vervain`, `obedient-plant`, `ironweed`)
-
-## In progress - Codex
-
-- 2026-05-07: fixing DB-layer TypeScript errors in `src/db/` and `src/storage/plantDatabase.ts`
-- 2026-05-07: touching `src/screens/PlantDetailScreen.tsx` only for the approved leaf-photo fallback card
+- [x] `npx tsc --noEmit` is clean
+- [x] Fixed DB-layer TypeScript errors in `src/db/client.ts`, `src/db/migrations.ts`, `src/db/seed.ts`, and `src/db/repositories/`
+- [x] Removed the stale unused legacy storage path: `src/storage/plantDatabase.ts` and `src/hooks/usePlantRepository.ts`
+- [x] Kept `PlantDetailScreen.tsx` touch scoped to the approved leaf-photo fallback card for plants missing a leaf slot image
+- [x] Added minimal validation-compatibility fixes required by the current iNat image set:
+  - `src/data/sources.ts` now includes `INATURALIST` in the image source catalog
+  - `src/data/imageAssetKeys.ts` now matches the current bundled image registry
+  - `src/utils/plants.ts` includes the `INATURALIST` source label
+  - `scripts/fetch-inaturalist-stages.ts` no longer references a non-existent `commonName` field
+- [x] Re-exported backend mirror data after validation changes
 
 ---
 
-## In progress - Claude
+## Verification - Codex
 
-- Waiting on Codex db fixes before touching any shared files
-- Will do visual slot audit once Codex pushes (user needs to walk through the app)
+- `npx tsc --noEmit` passed
+- `npm run data:validate` passed
+- `npm run data:export-backend` passed
+- `npm run db:smoke` passed
+- `npm test` passed (`6/6`)
+
+---
 
 ## Pending - Claude
 
 - [ ] Visual audit of iNat image slots across all 31 plants (only black-eyed-susan was user-verified; others were annotated by iNat phenology and not hand-checked)
-- [x] Strip redundant explicit `bloomSeason` values from plant definitions in `plants.ts` — done, 31 removed, only the auto-derive inside `createPlant` remains
+- [ ] Decide whether the current top-tab layout should stay as-is on Android after device review
 
 ---
 
 ## Known issues / watch out for
 
-- `blue-vervain` and `ironweed` only have a `detail` iNat image (fruit was a duplicate photo, skipped by wire script)
-- `obedient-plant` has no leaf iNat image
-- Tab bar is at the top - if something looks off on Android, that's likely why
-- `SEED_VERSION` is `2026.05.06-mvp2` - bump to `mvp3` next time `plants.ts` or image data changes on native
+- `blue-vervain` and `ironweed` still have no bundled leaf-slot image; `PlantDetailScreen` now shows a fallback card instead of failing silently
+- `obedient-plant` still has no bundled leaf-slot image; same fallback applies
+- There are unrelated local UI/doc edits still present in the working tree (`README.md`, `TODO.md`, `src/screens/FieldModeScreen.tsx`, `src/screens/IdentifyScreen.tsx`) that were not part of the Codex DB/type fix commit

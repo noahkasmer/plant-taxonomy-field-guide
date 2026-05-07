@@ -192,7 +192,7 @@ async function main() {
   const report: Candidate[] = [];
 
   for (const plant of PLANTS) {
-    console.log(`\n── ${plant.commonName ?? plant.id} (${plant.scientificName})`);
+    console.log(`\n── ${plant.id} (${plant.scientificName})`);
 
     for (const [slot, config] of Object.entries(PHENOLOGY) as [Slot, typeof PHENOLOGY[Slot]][]) {
       const assetKey = `${plant.id}-inat-${slot}`;

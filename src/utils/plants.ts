@@ -25,6 +25,7 @@ const imageSourceLabels: Record<ImageSourceName, string> = {
   USDA: 'U.S. Department of Agriculture',
   LIBRARY_OF_CONGRESS: 'Library of Congress',
   WIKIMEDIA_COMMONS: 'Wikimedia Commons',
+  INATURALIST: 'iNaturalist',
 };
 
 const factSummaryLabels: Record<FactSummaryMethod, string> = {

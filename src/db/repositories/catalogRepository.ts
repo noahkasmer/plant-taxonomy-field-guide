@@ -1,5 +1,3 @@
-import type { SQLiteDatabase } from 'expo-sqlite';
-
 import type {
   AppDataStats,
   BloomMonth,
@@ -17,6 +15,8 @@ import type {
   PlantSynonym,
   PlantType,
 } from '@/types/plant';
+import { DATABASE_NAME } from '@/db/constants';
+import type { DatabaseHandle } from '@/db/types';
 import { bloomMonthOrder, compareBloomMonths } from '@/utils/months';
 
 type PlantRow = {
@@ -119,7 +119,7 @@ function toPlantSummary(detail: PlantDetail): PlantSummary {
   };
 }
 
-export async function getAllPlantDetailsAsync(db: SQLiteDatabase): Promise<PlantDetail[]> {
+export async function getAllPlantDetailsAsync(db: DatabaseHandle): Promise<PlantDetail[]> {
   const [
     plantRows,
     factSourceRows,
@@ -341,7 +341,7 @@ export function buildFilterOptions(plantSummaries: PlantSummary[]): CatalogFilte
   };
 }
 
-export async function getCatalogBootstrapAsync(db: SQLiteDatabase) {
+export async function getCatalogBootstrapAsync(db: DatabaseHandle) {
   const details = await getAllPlantDetailsAsync(db);
   const summaries = details.map((detail) => toPlantSummary(detail));
   const filterOptions = buildFilterOptions(summaries);
@@ -354,7 +354,7 @@ export async function getCatalogBootstrapAsync(db: SQLiteDatabase) {
 }
 
 export async function getAppDataStatsAsync(
-  db: SQLiteDatabase,
+  db: DatabaseHandle,
   favoriteCount: number,
   recentCount: number,
 ): Promise<AppDataStats> {
@@ -370,8 +370,7 @@ export async function getAppDataStatsAsync(
   `);
   const meta = await db.getAllAsync<{ key: string; value: string }>(
     'SELECT key, value FROM app_meta WHERE key IN (?, ?)',
-    'seed_version',
-    'last_seeded_at',
+    ['seed_version', 'last_seeded_at'],
   );
   const metaMap = new Map(meta.map((entry) => [entry.key, entry.value]));
 
@@ -383,7 +382,7 @@ export async function getAppDataStatsAsync(
     bundledImageCount: counts?.bundled_image_count ?? 0,
     lastSeededAt: metaMap.get('last_seeded_at') ?? '',
     seedVersion: metaMap.get('seed_version') ?? '',
-    databasePath: db.databasePath,
+    databasePath: db.databasePath ?? DATABASE_NAME,
   };
 }
 

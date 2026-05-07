@@ -1,11 +1,10 @@
-import type { SQLiteDatabase } from 'expo-sqlite';
-
 import { reviewedImageCandidates } from '@/data/imageManifest';
 import { licenseCatalog } from '@/data/licenses';
 import { plants } from '@/data/plants';
 import { sourceCatalog } from '@/data/sources';
 import { validateCatalogData } from '@/data/validateCatalog';
 import { SEED_VERSION } from '@/db/constants';
+import type { DatabaseHandle } from '@/db/types';
 import { getBloomMonthNumber } from '@/utils/months';
 import { slugify } from '@/utils/text';
 
@@ -13,16 +12,24 @@ function sourceCatalogSortValue(sourceType: 'fact' | 'image') {
   return sourceType === 'fact' ? 0 : 1;
 }
 
-export async function getSeedVersionAsync(db: SQLiteDatabase) {
+function runSqlAsync(
+  db: DatabaseHandle,
+  source: string,
+  ...params: Array<string | number | null>
+) {
+  return db.runAsync(source, params);
+}
+
+export async function getSeedVersionAsync(db: DatabaseHandle) {
   const row = await db.getFirstAsync<{ value: string }>(
     'SELECT value FROM app_meta WHERE key = ?',
-    'seed_version',
+    ['seed_version'],
   );
 
   return row?.value ?? null;
 }
 
-async function clearSeedTablesAsync(db: SQLiteDatabase) {
+async function clearSeedTablesAsync(db: DatabaseHandle) {
   await db.execAsync(`
     DELETE FROM reviewed_image_candidates;
     DELETE FROM images;
@@ -41,17 +48,18 @@ async function clearSeedTablesAsync(db: SQLiteDatabase) {
   `);
 }
 
-export async function seedDatabaseAsync(db: SQLiteDatabase) {
+export async function seedDatabaseAsync(db: DatabaseHandle) {
   validateCatalogData();
 
-  await db.withExclusiveTransactionAsync(async (txn) => {
+  await db.withExclusiveTransactionAsync(async (txn: DatabaseHandle) => {
     await clearSeedTablesAsync(txn);
 
     const orderedHabitats = [...new Set(plants.flatMap((plant) => plant.habitats))].sort();
     const flowerColorTags = [...new Set(plants.flatMap((plant) => plant.flowerColors))].sort();
 
     for (const source of sourceCatalog) {
-      await txn.runAsync(
+      await runSqlAsync(
+        txn,
         `
           INSERT INTO sources (
             id,
@@ -74,7 +82,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
     }
 
     for (const license of licenseCatalog) {
-      await txn.runAsync(
+      await runSqlAsync(
+        txn,
         `
           INSERT INTO licenses (
             id,
@@ -95,7 +104,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
     }
 
     for (const [index, habitat] of orderedHabitats.entries()) {
-      await txn.runAsync(
+      await runSqlAsync(
+        txn,
         'INSERT INTO habitats (id, label, sort_order) VALUES (?, ?, ?)',
         habitat,
         habitat,
@@ -105,7 +115,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
 
     for (const flowerColor of flowerColorTags) {
       const tagId = `flower-color:${flowerColor}`;
-      await txn.runAsync(
+      await runSqlAsync(
+        txn,
         'INSERT INTO tags (id, category, label, slug) VALUES (?, ?, ?, ?)',
         tagId,
         'flower_color',
@@ -115,7 +126,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
     }
 
     for (const plant of plants) {
-      await txn.runAsync(
+      await runSqlAsync(
+        txn,
         `
           INSERT INTO plants (
             id,
@@ -169,7 +181,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
 
     for (const plant of plants) {
       for (const [index, factSource] of plant.factSources.entries()) {
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           'INSERT INTO plant_fact_sources (plant_id, source_id, sort_order) VALUES (?, ?, ?)',
           plant.id,
           factSource,
@@ -178,7 +191,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
       }
 
       for (const habitat of plant.habitats) {
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           'INSERT INTO plant_habitats (plant_id, habitat_id) VALUES (?, ?)',
           plant.id,
           habitat,
@@ -186,7 +200,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
       }
 
       for (const bloomMonth of plant.bloomMonths) {
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           'INSERT INTO bloom_periods (plant_id, month_number, month_label) VALUES (?, ?, ?)',
           plant.id,
           getBloomMonthNumber(bloomMonth),
@@ -196,7 +211,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
 
       for (const flowerColor of plant.flowerColors) {
         const tagId = `flower-color:${flowerColor}`;
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           'INSERT INTO plant_tags (plant_id, tag_id) VALUES (?, ?)',
           plant.id,
           tagId,
@@ -204,7 +220,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
       }
 
       for (const synonym of plant.synonyms) {
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           'INSERT INTO synonyms (id, plant_id, term, kind) VALUES (?, ?, ?, ?)',
           `${plant.id}:${synonym.kind}:${slugify(synonym.term)}`,
           plant.id,
@@ -215,7 +232,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
 
       for (const image of plant.images) {
         const attributionId = `attribution:${image.id}`;
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           `
             INSERT INTO attributions (
               id,
@@ -242,7 +260,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
             : null,
         );
 
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           `
             INSERT INTO images (
               id,
@@ -283,7 +302,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
 
     for (const plant of plants) {
       for (const similarSpeciesId of plant.similarSpeciesIds) {
-        await txn.runAsync(
+        await runSqlAsync(
+          txn,
           'INSERT INTO similar_species (plant_id, similar_plant_id) VALUES (?, ?)',
           plant.id,
           similarSpeciesId,
@@ -292,7 +312,8 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
     }
 
     for (const candidate of reviewedImageCandidates) {
-      await txn.runAsync(
+      await runSqlAsync(
+        txn,
         `
           INSERT INTO reviewed_image_candidates (
             id,
@@ -337,17 +358,20 @@ export async function seedDatabaseAsync(db: SQLiteDatabase) {
     }
 
     const now = new Date().toISOString();
-    await txn.runAsync(
+    await runSqlAsync(
+      txn,
       'INSERT OR REPLACE INTO app_meta (key, value) VALUES (?, ?)',
       'seed_version',
       SEED_VERSION,
     );
-    await txn.runAsync(
+    await runSqlAsync(
+      txn,
       'INSERT OR REPLACE INTO app_meta (key, value) VALUES (?, ?)',
       'last_seeded_at',
       now,
     );
-    await txn.runAsync(
+    await runSqlAsync(
+      txn,
       'INSERT OR REPLACE INTO app_meta (key, value) VALUES (?, ?)',
       'catalog_size',
       String(plants.length),

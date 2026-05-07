@@ -101,4 +101,14 @@ export const sourceCatalog: SourceCatalogEntry[] = [
       'Useful reviewed fallback. Every file must be checked individually for rights and attribution requirements.',
     preferredForCommercialApp: false,
   },
+  {
+    id: 'INATURALIST',
+    label: 'iNaturalist',
+    sourceType: 'image',
+    baseUrl: 'https://www.inaturalist.org/',
+    policyUrl: 'https://help.inaturalist.org/en/support/solutions/articles/151000169918-can-i-use-the-photos-and-sounds-that-are-posted-on-inaturalist-',
+    usageNotes:
+      'Only use individual photos whose license is clearly compatible and whose attribution metadata is preserved in full.',
+    preferredForCommercialApp: false,
+  },
 ];

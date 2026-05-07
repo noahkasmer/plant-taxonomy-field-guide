@@ -1,16 +1,14 @@
-import {
-  deleteDatabaseAsync,
-  openDatabaseAsync,
-  type SQLiteDatabase,
-} from 'expo-sqlite';
+import * as SQLite from 'expo-sqlite';
 
 import { DATABASE_NAME } from '@/db/constants';
+import type { DatabaseHandle, SQLiteModuleWithDelete } from '@/db/types';
 
-let databasePromise: Promise<SQLiteDatabase> | null = null;
+const sqliteModule = SQLite as SQLiteModuleWithDelete;
+let databasePromise: Promise<DatabaseHandle> | null = null;
 
 export function getDatabaseAsync() {
   if (!databasePromise) {
-    databasePromise = openDatabaseAsync(DATABASE_NAME);
+    databasePromise = SQLite.openDatabaseAsync(DATABASE_NAME) as Promise<DatabaseHandle>;
   }
 
   return databasePromise;
@@ -28,5 +26,5 @@ export async function closeDatabaseAsync() {
 
 export async function resetDatabaseAsync() {
   await closeDatabaseAsync();
-  await deleteDatabaseAsync(DATABASE_NAME);
+  await sqliteModule.deleteDatabaseAsync(DATABASE_NAME);
 }
