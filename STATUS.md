@@ -5,7 +5,7 @@ Read this before starting. Update this before pushing.
 ---
 
 ## Last updated
-2026-05-07 — Claude Code
+2026-05-07 - Claude Code
 
 ---
 
@@ -19,17 +19,22 @@ Read this before starting. Update this before pushing.
 
 ---
 
-## Pending — Codex
+## Pending - Codex
 
 - [ ] Fix db-layer TS errors: `src/db/client.ts`, `src/db/migrations.ts`, `src/storage/plantDatabase.ts`, `src/db/repositories/` (expo-sqlite API mismatches, `identifyingFeatures` missing from Plant type)
 - [ ] Add fallback card in `PlantDetailScreen.tsx` for plants missing a leaf photo (`blue-vervain`, `obedient-plant`, `ironweed`)
 
+## In progress - Codex
+
+- 2026-05-07: fixing DB-layer TypeScript errors in `src/db/` and `src/storage/plantDatabase.ts`
+- 2026-05-07: touching `src/screens/PlantDetailScreen.tsx` only for the approved leaf-photo fallback card
+
 ---
 
-## Pending — Claude
+## Pending - Claude
 
 - [ ] Visual audit of iNat image slots across all 31 plants (only black-eyed-susan was user-verified; others were annotated by iNat phenology and not hand-checked)
-- [ ] Strip redundant explicit `bloomSeason` values from plant definitions in `plants.ts` (they're overridden at runtime by `deriveBloomSeason` in `createPlant` — harmless but noisy)
+- [x] Strip redundant explicit `bloomSeason` values from plant definitions in `plants.ts` — done, 31 removed, only the auto-derive inside `createPlant` remains
 
 ---
 
@@ -37,5 +42,5 @@ Read this before starting. Update this before pushing.
 
 - `blue-vervain` and `ironweed` only have a `detail` iNat image (fruit was a duplicate photo, skipped by wire script)
 - `obedient-plant` has no leaf iNat image
-- Tab bar is at the top — if something looks off on Android, that's likely why
-- `SEED_VERSION` is `2026.05.06-mvp2` — bump to `mvp3` next time `plants.ts` or image data changes on native
+- Tab bar is at the top - if something looks off on Android, that's likely why
+- `SEED_VERSION` is `2026.05.06-mvp2` - bump to `mvp3` next time `plants.ts` or image data changes on native
